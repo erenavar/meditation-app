@@ -1,7 +1,7 @@
-import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
-import LoginScreen from "../screens/LoginScreen";
+import ForgotPasswordScreen from "../screens/forgotPasswordScreen/ForgotPasswordScreen";
+import LoginScreen from "../screens/loginScreen/LoginScreen";
 
 export type RootStackParamList = {
-    LoginScreen: undefined;
-    ForgotPasswordScreen: undefined
+    Login: undefined;
+    ForgotPassword: undefined
 }
