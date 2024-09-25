@@ -1,16 +1,16 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.logoArea}>
         <Text style={styles.text}>Welcome</Text>
       </View>
       <View style={styles.actionArea}></View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -19,10 +19,11 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#73c3dd",
   },
   logoArea: {
     flex: 3,
-    backgroundColor: "#0092C9",
+    backgroundColor: "#73c3dd",
   },
   text: {
     color: "white",
@@ -34,6 +35,8 @@ const styles = StyleSheet.create({
   },
   actionArea: {
     flex: 2,
-    backgroundColor: "pink",
+    backgroundColor: "#E5F4F2",
+    borderTopStartRadius: 30,
+    borderTopEndRadius: 30,
   },
 });
