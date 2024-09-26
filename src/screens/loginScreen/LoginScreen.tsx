@@ -1,4 +1,11 @@
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,6 +15,12 @@ const LoginScreen = () => {
     <View style={styles.container}>
       <View style={styles.logoArea}>
         <Text style={styles.text}>Welcome</Text>
+        <View style={styles.imageArea}>
+          <Image
+            source={require("../../../assets/loginImage.jpg")}
+            style={styles.image}
+          />
+        </View>
       </View>
       <View style={styles.actionArea}></View>
     </View>
@@ -30,8 +43,19 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
     fontSize: 40,
     fontWeight: "900",
-    left: 40,
-    top: 160,
+    left: 30,
+    top: (Dimensions.get("screen").height * 1) / 5,
+  },
+  imageArea: {
+    alignItems: "flex-end",
+    paddingTop: (Dimensions.get("window").height * 1) / 15,
+    paddingRight: 10,
+    zIndex: -1,
+  },
+  image: {
+    height: 200,
+    width: 200,
+    borderRadius: 100,
   },
   actionArea: {
     flex: 2,
