@@ -1,9 +1,10 @@
 import {
   Dimensions,
   Image,
-  SafeAreaView,
+  Pressable,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from "react-native";
 import React from "react";
@@ -22,7 +23,27 @@ const LoginScreen = () => {
           />
         </View>
       </View>
-      <View style={styles.actionArea}></View>
+      <View style={styles.actionArea}>
+        <View style={styles.userArea}>
+          <View>
+            <Text>Please Sign-In</Text>
+          </View>
+          <View>
+            <TextInput placeholder="Test" />
+          </View>
+          <View>
+            <TextInput placeholder="Test2" />
+          </View>
+          <View>
+            <Pressable>
+              <Text>Forgot password</Text>
+            </Pressable>
+            <Pressable>
+              <Text>Sign Up</Text>
+            </Pressable>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
@@ -62,5 +83,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#E5F4F2",
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
+  },
+  userArea: {
+    left: 30,
   },
 });
