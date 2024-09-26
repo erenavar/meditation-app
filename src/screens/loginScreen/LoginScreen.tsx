@@ -28,11 +28,13 @@ const LoginScreen = () => {
           <View>
             <Text>Please Sign-In</Text>
           </View>
-          <View>
-            <TextInput placeholder="Test" />
-          </View>
-          <View>
-            <TextInput placeholder="Test2" />
+          <View style={styles.inputArea}>
+            <View>
+              <TextInput placeholder="Test" />
+            </View>
+            <View>
+              <TextInput placeholder="Test2" />
+            </View>
           </View>
           <View>
             <Pressable>
@@ -85,6 +87,9 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 30,
   },
   userArea: {
+    flex: 1,
     left: 30,
+    justifyContent: "space-around",
   },
+  inputArea: {},
 });
