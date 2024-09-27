@@ -16,7 +16,7 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.logoArea}>
-        <Text style={styles.text}>Welcome</Text>
+        <Text style={styles.text}>Hoşgeldiniz</Text>
         <View style={styles.imageArea}>
           <Image
             source={require("../../../assets/loginImage.jpg")}
@@ -27,7 +27,7 @@ const LoginScreen = () => {
       <View style={styles.actionArea}>
         <View style={styles.userArea}>
           <View>
-            <Text style={{ fontSize: 24 }}>Please Sign-In</Text>
+            <Text style={{ fontSize: 24 }}>Üye Girişi</Text>
           </View>
           <View style={styles.inputArea}>
             <View style={styles.dataLine}>
@@ -41,10 +41,10 @@ const LoginScreen = () => {
           </View>
           <View style={styles.userButtonsArea}>
             <Pressable>
-              <Text>Şifremi Unuttum</Text>
+              <Text style={styles.buttonText}>Şifremi Unuttum</Text>
             </Pressable>
             <Pressable>
-              <Text>Giriş</Text>
+              <Text style={styles.buttonText}>Giriş</Text>
             </Pressable>
           </View>
         </View>
@@ -112,5 +112,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginRight: 60,
+  },
+  buttonText: {
+    color: "#0092C9",
+    fontWeight: "bold",
+    fontSize: 18,
+    marginBottom: 15,
   },
 });
