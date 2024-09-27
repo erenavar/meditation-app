@@ -26,22 +26,22 @@ const LoginScreen = () => {
       <View style={styles.actionArea}>
         <View style={styles.userArea}>
           <View>
-            <Text>Please Sign-In</Text>
+            <Text style={{ fontSize: 24 }}>Please Sign-In</Text>
           </View>
           <View style={styles.inputArea}>
             <View>
-              <TextInput placeholder="Test" />
+              <TextInput placeholder="Test" style={styles.input} />
             </View>
             <View>
-              <TextInput placeholder="Test2" />
+              <TextInput placeholder="Test2" style={styles.input} />
             </View>
           </View>
-          <View>
+          <View style={styles.userButtonsArea}>
             <Pressable>
-              <Text>Forgot password</Text>
+              <Text>Şifremi Unuttum</Text>
             </Pressable>
             <Pressable>
-              <Text>Sign Up</Text>
+              <Text>Giriş</Text>
             </Pressable>
           </View>
         </View>
@@ -91,5 +91,18 @@ const styles = StyleSheet.create({
     left: 30,
     justifyContent: "space-around",
   },
-  inputArea: {},
+  inputArea: {
+    gap: 25,
+  },
+  input: {
+    borderBottomColor: "lightgray",
+    borderBottomWidth: 1,
+    marginRight: 60,
+    fontSize: 17,
+  },
+  userButtonsArea: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginRight: 60,
+  },
 });
