@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -29,11 +30,13 @@ const LoginScreen = () => {
             <Text style={{ fontSize: 24 }}>Please Sign-In</Text>
           </View>
           <View style={styles.inputArea}>
-            <View>
-              <TextInput placeholder="Test" style={styles.input} />
+            <View style={styles.dataLine}>
+              <FontAwesome6 name="envelope-open" size={20} color="black" />
+              <TextInput placeholder="E-Mail" style={styles.input} />
             </View>
-            <View>
-              <TextInput placeholder="Test2" style={styles.input} />
+            <View style={styles.dataLine}>
+              <FontAwesome6 name="key" size={20} color="black" />
+              <TextInput placeholder="Şifre" style={styles.input} />
             </View>
           </View>
           <View style={styles.userButtonsArea}>
@@ -94,11 +97,16 @@ const styles = StyleSheet.create({
   inputArea: {
     gap: 25,
   },
-  input: {
+  dataLine: {
+    flexDirection: "row",
     borderBottomColor: "lightgray",
     borderBottomWidth: 1,
     marginRight: 60,
+    paddingBottom: 10,
+  },
+  input: {
     fontSize: 17,
+    marginLeft: 10,
   },
   userButtonsArea: {
     flexDirection: "row",
