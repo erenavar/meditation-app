@@ -1,8 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/homeScreen/HomeScreen";
 import ProfileScreen from "../screens/profileScreen/ProfileScreen";
+import { TabParamList } from "./types";
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabParamList>();
 
 function TabBarNavigation() {
   return (

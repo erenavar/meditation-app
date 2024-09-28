@@ -17,8 +17,12 @@ function MainNavigation() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+        <Stack.Screen
+          name="TabBar"
+          component={TabBarNavigation}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
-      <Stack.Screen name="TabBarNavigation" component={TabBarNavigation} />
     </NavigationContainer>
   );
 }

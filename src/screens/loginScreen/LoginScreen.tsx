@@ -11,10 +11,13 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import TabBarNavigation from "../../navigation/TabBarNavigation";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../navigation/types";
 
 const { width, height } = Dimensions.get("window");
 const LoginScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <View style={styles.container}>
       <View style={styles.logoArea}>
@@ -50,7 +53,7 @@ const LoginScreen = () => {
             <Pressable>
               <Text style={styles.buttonText}>Şifremi Unuttum</Text>
             </Pressable>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate("TabBar")}>
               <Text style={styles.buttonText}>Giriş</Text>
             </Pressable>
           </View>
