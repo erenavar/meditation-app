@@ -10,13 +10,16 @@ import {
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
+const { width, height } = Dimensions.get("window");
 const LoginScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.logoArea}>
         <Text style={styles.text}>Hoşgeldiniz</Text>
+
         <View style={styles.imageArea}>
           <Image
             source={require("../../../assets/loginImage.jpg")}
@@ -24,7 +27,11 @@ const LoginScreen = () => {
           />
         </View>
       </View>
+
       <View style={styles.actionArea}>
+        <View style={styles.arrow}>
+          <AntDesign name="arrowright" size={35} color="white" />
+        </View>
         <View style={styles.userArea}>
           <View>
             <Text style={{ fontSize: 24 }}>Üye Girişi</Text>
@@ -63,6 +70,7 @@ const styles = StyleSheet.create({
   logoArea: {
     flex: 3,
     backgroundColor: "#73c3dd",
+    zIndex: -1,
   },
   text: {
     color: "white",
@@ -74,7 +82,7 @@ const styles = StyleSheet.create({
   },
   imageArea: {
     alignItems: "flex-end",
-    paddingTop: (Dimensions.get("window").height * 1) / 15,
+    paddingTop: (height * 1) / 15,
     paddingRight: 10,
     zIndex: -1,
   },
@@ -88,11 +96,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#E5F4F2",
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
+    zIndex: 4,
   },
   userArea: {
     flex: 1,
     left: 30,
-    justifyContent: "space-around",
+    top: -30,
+
+    justifyContent: "space-between",
   },
   inputArea: {
     gap: 25,
@@ -118,5 +129,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
     marginBottom: 15,
+  },
+  arrow: {
+    backgroundColor: "#e5aebf",
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    justifyContent: "center",
+    alignItems: "center",
+    left: width * 0.66,
+    top: -35,
+    zIndex: 2,
   },
 });
