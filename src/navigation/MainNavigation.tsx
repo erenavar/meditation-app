@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../screens/loginScreen/LoginScreen";
 import ForgotPasswordScreen from "../screens/forgotPasswordScreen/ForgotPasswordScreen";
 import { RootStackParamList } from "./types";
+import TabBarNavigation from "./TabBarNavigation";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,6 +18,7 @@ function MainNavigation() {
         />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
       </Stack.Navigator>
+      <Stack.Screen name="TabBarNavigation" component={TabBarNavigation} />
     </NavigationContainer>
   );
 }
