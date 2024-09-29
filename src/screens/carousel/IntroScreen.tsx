@@ -4,7 +4,7 @@ import React from "react";
 const IntroScreen = () => {
   return (
     <View>
-      <Text>IntroScreen</Text>
+      <Text></Text>
     </View>
   );
 };
