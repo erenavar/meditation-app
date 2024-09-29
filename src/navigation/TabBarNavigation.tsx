@@ -16,6 +16,7 @@ function TabBarNavigation() {
         },
         tabBarStyle: {
           height: Platform.OS === "android" ? 65 : 80,
+          
         },
       }}
     >
@@ -35,6 +36,9 @@ function TabBarNavigation() {
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="person" size={30} color="black" />
           ),
+          tabBarLabelStyle: {
+            fontSize: 20,
+          },
         }}
       />
     </Tab.Navigator>
