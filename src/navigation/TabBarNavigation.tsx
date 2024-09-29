@@ -3,7 +3,11 @@ import HomeScreen from "../screens/homeScreen/HomeScreen";
 import ProfileScreen from "../screens/profileScreen/ProfileScreen";
 import { TabParamList } from "./types";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Platform } from "react-native";
+import OtherScreen from "../screens/otherScreen/OtherScreen";
+import BlogScreen from "../screens/blogScreen/BlogScreen";
+import MeditationScreen from "../screens/meditationScreen/MeditationScreen";
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -16,7 +20,6 @@ function TabBarNavigation() {
         },
         tabBarStyle: {
           height: Platform.OS === "android" ? 65 : 80,
-          
         },
       }}
     >
@@ -36,8 +39,35 @@ function TabBarNavigation() {
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="person" size={30} color="black" />
           ),
-          tabBarLabelStyle: {
-            fontSize: 20,
+        }}
+      />
+      <Tab.Screen
+        name="Meditation"
+        component={MeditationScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="meditation" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Blog"
+        component={BlogScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="article" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Other"
+        component={OtherScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="all-inclusive" size={24} color="black" />
+          ),
+          tabBarIconStyle: {
+            color: "red",
           },
         }}
       />
