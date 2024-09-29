@@ -4,6 +4,7 @@ import LoginScreen from "../screens/loginScreen/LoginScreen";
 import ForgotPasswordScreen from "../screens/forgotPasswordScreen/ForgotPasswordScreen";
 import { RootStackParamList } from "./types";
 import TabBarNavigation from "./TabBarNavigation";
+import IntroScreen from "../screens/carousel/IntroScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -11,6 +12,7 @@ function MainNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Intro" component={IntroScreen} />
         <Stack.Screen
           name="Login"
           component={LoginScreen}

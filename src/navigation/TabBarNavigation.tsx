@@ -28,7 +28,7 @@ function TabBarNavigation() {
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="home" size={30} color="black" />
+            <MaterialIcons name="home" size={30} color="pink" />
           ),
         }}
       />
@@ -37,7 +37,7 @@ function TabBarNavigation() {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="person" size={30} color="black" />
+            <MaterialIcons name="person" size={30} color="green" />
           ),
         }}
       />
@@ -46,7 +46,11 @@ function TabBarNavigation() {
         component={MeditationScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="meditation" size={24} color="black" />
+            <MaterialCommunityIcons
+              name="meditation"
+              size={34}
+              color="#73c3dd"
+            />
           ),
         }}
       />
@@ -55,7 +59,7 @@ function TabBarNavigation() {
         component={BlogScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="article" size={24} color="black" />
+            <MaterialIcons name="article" size={24} color="red" />
           ),
         }}
       />
@@ -64,7 +68,7 @@ function TabBarNavigation() {
         component={OtherScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="all-inclusive" size={24} color="black" />
+            <MaterialIcons name="all-inclusive" size={24} color="purple" />
           ),
           tabBarIconStyle: {
             color: "red",
