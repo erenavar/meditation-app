@@ -17,4 +17,3 @@ const IntroScreen = () => {
 export default IntroScreen;
 
 const styles = StyleSheet.create({});
-
