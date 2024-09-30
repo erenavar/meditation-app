@@ -1,10 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import datas from "../../utils/introTexts";
+import Carousel from "../../components/Carousel";
 
 const IntroScreen = () => {
   return (
     <View>
-      <Text></Text>
+      <FlatList
+        data={datas}
+        renderItem={({ item }) => <Carousel item={item} />}
+      />
     </View>
   );
 };
@@ -12,3 +17,4 @@ const IntroScreen = () => {
 export default IntroScreen;
 
 const styles = StyleSheet.create({});
+

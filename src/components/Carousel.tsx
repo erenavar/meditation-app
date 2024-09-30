@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, View, Image } from "react-native";
 import React from "react";
+import { IIntroProps } from "../utils/types";
 
-const Carousel = () => {
+const Carousel = (props: IIntroProps) => {
+  const { width } = Dimensions.get("window");
   return (
     <View>
-      <Text>Carousel</Text>
+      <Image source={props.image} />
     </View>
   );
 };
