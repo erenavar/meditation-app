@@ -5,10 +5,13 @@ import Carousel from "../../components/Carousel";
 
 const IntroScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={datas}
         renderItem={({ item }) => <Carousel item={item} />}
+        horizontal
+        showsHorizontalScrollIndicator
+        pagingEnabled
       />
     </View>
   );
@@ -16,4 +19,10 @@ const IntroScreen = () => {
 
 export default IntroScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

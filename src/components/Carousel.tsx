@@ -4,7 +4,7 @@ import { IIntroProps } from "../utils/types";
 
 const Carousel = ({ item }: { item: IIntroProps }) => {
   const { width } = Dimensions.get("window");
-  console.log("item :>> ", item);
+
   return (
     <View>
       <Image
@@ -12,7 +12,8 @@ const Carousel = ({ item }: { item: IIntroProps }) => {
         style={[styles.image, { width, resizeMode: "contain" }]}
       />
       <View style={{ flex: 0.3 }}>
-        <Text>{item.title}</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.description}>{item.description}</Text>
       </View>
     </View>
   );
@@ -24,5 +25,16 @@ const styles = StyleSheet.create({
   image: {
     flex: 0.7,
     justifyContent: "center",
+  },
+  title: {
+    fontWeight: "800",
+    fontSize: 28,
+    textAlign: "center",
+  },
+  description: {
+    fontWeight: "300",
+    color: "#62656b",
+    textAlign: "center",
+    paddingHorizontal: 64,
   },
 });
