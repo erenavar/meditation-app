@@ -13,7 +13,9 @@ const Carousel = ({ item }: { item: IIntroProps }) => {
       />
       <View style={{ flex: 0.3 }}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
+        <Text style={styles.description} numberOfLines={3}>
+          {item.description}
+        </Text>
       </View>
     </View>
   );
@@ -36,5 +38,6 @@ const styles = StyleSheet.create({
     color: "#62656b",
     textAlign: "center",
     paddingHorizontal: 64,
+    width: Dimensions.get("window").width,
   },
 });
