@@ -12,7 +12,7 @@ function MainNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Intro" component={IntroScreen} />
+        <Stack.Screen name="Intro" component={IntroScreen} options={{headerShown:false}} />
         <Stack.Screen
           name="Login"
           component={LoginScreen}
