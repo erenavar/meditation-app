@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { IIntroProps } from "../utils/types";
 
-const Paginator = ({ data }) => {
+const Paginator = ({ data }: IIntroProps) => {
   return (
-    <View>
-      {data.map((_:any, i:number) => {
-        return <View style={styles.dot} key={i.toString()} />;
+    <View style={{ flexDirection: "row", height: 64 }}>
+      {data.map((item: any, i: number) => {
+        console.log("item :>> ", item);
+        return <View style={[styles.dot, { width: 10 }]} />;
       })}
     </View>
   );
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
   dot: {
     height: 10,
     borderRadius: 5,
-    backgroundColor: "493d8a",
+    backgroundColor: "#493d8a",
     marginHorizontal: 8,
   },
 });

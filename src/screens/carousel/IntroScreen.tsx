@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import datas from "../../utils/introTexts";
 import Carousel from "../../components/Carousel";
 import Paginator from "../../components/Paginator";
+import introTexts from "../../utils/introTexts";
 
 const IntroScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,7 +38,7 @@ const IntroScreen = () => {
           ref={slidesRef}
         />
       </View>
-      <Paginator data={slides} />
+      <Paginator data={introTexts} />
     </View>
   );
 };
