@@ -1,7 +1,17 @@
-import { ButtonProps, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 
-export default function Button(props: ButtonProps) {
+interface IProps extends PressableProps {
+  title: string;
+}
+
+export default function Button(props: IProps) {
   return (
     <Pressable style={styles.button}>
       <Text style={styles.text}>{props.title}</Text>

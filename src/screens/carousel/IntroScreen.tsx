@@ -1,4 +1,11 @@
-import { Animated, FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  Animated,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { useRef, useState } from "react";
 import datas from "../../utils/introTexts";
 import Carousel from "../../components/Carousel";
@@ -18,7 +25,7 @@ const IntroScreen = () => {
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={{ flex: 3 }}>
         <FlatList
           data={datas}
@@ -42,7 +49,7 @@ const IntroScreen = () => {
       </View>
       <Paginator data={introTexts} scrollX={scrollX} />
       <Button title="Login" />
-    </View>
+    </SafeAreaView>
   );
 };
 

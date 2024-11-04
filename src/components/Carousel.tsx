@@ -1,6 +1,7 @@
 import { Dimensions, StyleSheet, View, Image, Text } from "react-native";
 import React from "react";
 import { IIntroProps } from "../utils/types";
+import Paginator from "./Paginator";
 
 const Carousel = ({ item }: { item: IIntroProps }) => {
   const { width } = Dimensions.get("window");
@@ -9,7 +10,10 @@ const Carousel = ({ item }: { item: IIntroProps }) => {
     <View>
       <Image
         source={item.image}
-        style={[styles.image, { width, resizeMode: "contain" }]}
+        style={[
+          styles.image,
+          { width, marginBottom: 0, resizeMode: "contain" },
+        ]}
       />
       <View style={{ flex: 0.4 }}>
         <Text style={styles.title}>{item.title}</Text>
