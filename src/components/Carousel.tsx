@@ -11,7 +11,7 @@ const Carousel = ({ item }: { item: IIntroProps }) => {
         source={item.image}
         style={[styles.image, { width, resizeMode: "contain" }]}
       />
-      <View style={{ flex: 0.3 }}>
+      <View style={{ flex: 0.4 }}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.description} numberOfLines={3}>
           {item.description}
@@ -27,11 +27,13 @@ const styles = StyleSheet.create({
   image: {
     flex: 0.7,
     justifyContent: "center",
+    marginBottom: -80,
   },
   title: {
     fontWeight: "800",
     fontSize: 28,
     textAlign: "center",
+    marginBottom: 20,
   },
   description: {
     fontWeight: "300",

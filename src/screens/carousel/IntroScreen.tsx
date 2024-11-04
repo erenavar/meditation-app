@@ -15,6 +15,7 @@ const IntroScreen = () => {
     }
   );
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+  console.log("currentIndex :>> ", currentIndex);
   return (
     <View style={styles.container}>
       <View style={{ flex: 3 }}>
@@ -22,7 +23,7 @@ const IntroScreen = () => {
           data={datas}
           renderItem={({ item }) => <Carousel item={item} />}
           horizontal
-          showsHorizontalScrollIndicator
+          showsHorizontalScrollIndicator={false}
           pagingEnabled
           bounces={false}
           keyExtractor={(item) => item.id}
