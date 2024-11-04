@@ -1,20 +1,15 @@
-import {
-  Pressable,
-  PressableProps,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, PressableProps, StyleSheet, Text } from "react-native";
 import React from "react";
 
 interface IProps extends PressableProps {
   title: string;
+  onPress: () => void;
 }
 
-export default function Button(props: IProps) {
+export default function Button({ title, onPress }: IProps) {
   return (
-    <Pressable style={styles.button}>
-      <Text style={styles.text}>{props.title}</Text>
+    <Pressable style={styles.button} onPress={onPress}>
+      <Text style={styles.text}>{title}</Text>
     </Pressable>
   );
 }

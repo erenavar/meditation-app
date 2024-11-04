@@ -3,7 +3,6 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
 import React, { useRef, useState } from "react";
@@ -12,6 +11,7 @@ import Carousel from "../../components/Carousel";
 import Paginator from "../../components/Paginator";
 import introTexts from "../../utils/introTexts";
 import Button from "../../components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 const IntroScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,6 +23,7 @@ const IntroScreen = () => {
     }
   );
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,8 +48,12 @@ const IntroScreen = () => {
           ref={slidesRef}
         />
       </View>
-      <Paginator data={introTexts} scrollX={scrollX} />
-      <Button title="Login" />
+      <View style={{ marginBottom: 20 }}>
+        <Paginator data={introTexts} scrollX={scrollX} />
+      </View>
+      <View style={{ marginBottom: 30 }}>
+        <Button title="Login" onPress={() => navigation.navigate("Login")} />
+      </View>
     </SafeAreaView>
   );
 };
