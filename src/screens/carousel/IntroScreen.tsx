@@ -38,7 +38,7 @@ const IntroScreen = () => {
           ref={slidesRef}
         />
       </View>
-      <Paginator data={introTexts} />
+      <Paginator data={introTexts} scrollX={scrollX} />
     </View>
   );
 };
