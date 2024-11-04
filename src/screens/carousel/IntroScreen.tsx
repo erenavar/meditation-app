@@ -4,6 +4,7 @@ import datas from "../../utils/introTexts";
 import Carousel from "../../components/Carousel";
 import Paginator from "../../components/Paginator";
 import introTexts from "../../utils/introTexts";
+import Button from "../../components/Button";
 
 const IntroScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,7 +16,7 @@ const IntroScreen = () => {
     }
   );
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
-  console.log("currentIndex :>> ", currentIndex);
+
   return (
     <View style={styles.container}>
       <View style={{ flex: 3 }}>
@@ -40,6 +41,7 @@ const IntroScreen = () => {
         />
       </View>
       <Paginator data={introTexts} scrollX={scrollX} />
+      <Button title="Login" />
     </View>
   );
 };
@@ -51,6 +53,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "73c3dd",
   },
 });
