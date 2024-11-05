@@ -16,6 +16,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/types";
 
 const { width, height } = Dimensions.get("window");
+
 const LoginScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
