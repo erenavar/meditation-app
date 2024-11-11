@@ -11,7 +11,6 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import TabBarNavigation from "../../navigation/TabBarNavigation";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/types";
 
@@ -106,7 +105,6 @@ const styles = StyleSheet.create({
     flex: 1,
     left: 30,
     top: -30,
-
     justifyContent: "space-between",
   },
   inputArea: {
