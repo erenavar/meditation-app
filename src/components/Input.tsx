@@ -3,7 +3,7 @@ import React from "react";
 
 const Input = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput />
     </View>
   );
@@ -11,4 +11,9 @@ const Input = () => {
 
 export default Input;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "red",
+    fontFamily: "bold",
+  },
+});

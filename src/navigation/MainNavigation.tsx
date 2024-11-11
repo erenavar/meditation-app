@@ -13,6 +13,7 @@ function MainNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen
           name="Intro"
           component={IntroScreen}
@@ -23,7 +24,6 @@ function MainNavigation() {
           component={LoginScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen
           name="TabBar"
           component={TabBarNavigation}
