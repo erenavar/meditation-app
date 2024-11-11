@@ -1,8 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 
 const Input = () => {
-  return <View></View>;
+  return (
+    <View>
+      <TextInput />
+    </View>
+  );
 };
 
 export default Input;
