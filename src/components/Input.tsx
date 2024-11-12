@@ -1,13 +1,13 @@
 import React from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import { StyleSheet, TextInput, View } from "react-native";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 
 const Input = ({ icon, placeholder }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <FontAwesome6 name={icon} size={20} color="black" />
+      <AntDesign name={icon} size={24} color="black" />
       <TextInput placeholder={placeholder} style={styles.input} />
     </View>
   );

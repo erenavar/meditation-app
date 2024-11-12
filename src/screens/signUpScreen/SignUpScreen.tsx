@@ -19,6 +19,9 @@ const SignUpScreen = () => {
         <Text style={styles.text}>Create An Account</Text>
       </View>
       <View style={styles.inputArea}>
+        <Input icon={"user"} placeholder={"Email"} />
+        <Input icon={"user"} placeholder={"Name"} />
+        <Input icon={"user"} placeholder={"Name"} />
         <Input icon={"user"} placeholder={"Name"} />
       </View>
     </SafeAreaView>
