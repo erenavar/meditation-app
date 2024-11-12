@@ -3,7 +3,12 @@ import { StyleSheet, TextInput, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 
-const Input = ({ icon, placeholder }) => {
+type IInputProps = {
+  icon: keyof typeof AntDesign.glyphMap;
+  placeholder: string;
+};
+
+const Input = ({ icon, placeholder }: IInputProps) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
