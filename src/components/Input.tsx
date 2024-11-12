@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     borderBottomColor: "lightgray",
     paddingBottom: 10,
     alignItems: "center",
-    left: 30,
   },
   input: {
     fontSize: 17,
