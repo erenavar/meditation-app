@@ -18,7 +18,9 @@ const SignUpScreen = () => {
       <View style={styles.textArea}>
         <Text style={styles.text}>Create An Account</Text>
       </View>
-      <Input />
+      <View style={styles.inputArea}>
+        <Input icon={"user"} placeholder={"Name"} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -34,12 +36,16 @@ const styles = StyleSheet.create({
   },
   textArea: {
     marginLeft: width * 0.05,
-    marginTop: height * 0.04,
-    marginBottom: height * 0.04,
+    marginVertical: height * 0.04,
   },
   text: {
     fontSize: 26,
     fontWeight: "500",
     letterSpacing: 1.4,
+  },
+  inputArea: {
+    marginHorizontal: width * 0.05,
+    gap: 40,
+    marginTop: height * 0.02,
   },
 });
