@@ -34,8 +34,14 @@ const SignUpScreen = () => {
           <Text>Or sign in with</Text>
           <View></View>
         </View>
-        <Button title="Sign up with Facebook" />
-        <Button title="Sign up with Google" />
+        <Pressable>
+          <AntDesign name="facebook-square" size={24} color="black" />
+          <Text>Sign up with Facebook</Text>
+        </Pressable>
+        <Pressable>
+          <AntDesign name="google" size={24} color="black" />
+          <Text>Sign up with Google</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
