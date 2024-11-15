@@ -1,6 +1,8 @@
 export interface IProps {
-    title:string,
+    title: string,
     description: string,
-    id:string,
+    id: string,
     image: any
+
+
 }

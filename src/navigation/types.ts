@@ -1,5 +1,6 @@
 import { NavigatorScreenParams } from "@react-navigation/native";
 
+
 export type RootStackParamList = {
     Intro: undefined;
     Login: undefined;

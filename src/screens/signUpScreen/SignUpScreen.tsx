@@ -28,19 +28,17 @@ const SignUpScreen = () => {
         <Input icon={"key"} placeholder={"Password"} />
         <Input icon={"key"} placeholder={"Re-Password"} />
       </View>
-      <View>
+      <View style={styles.buttonArea}>
         <Button title="SIGN UP" />
-        <View>
-          <Text>Or sign in with</Text>
-          <View></View>
-        </View>
-        <Pressable>
-          <AntDesign name="facebook-square" size={24} color="black" />
-          <Text>Sign up with Facebook</Text>
+        <Text style={{ fontSize: 15, marginTop: 20 }}>Or sign in with</Text>
+        <View style={styles.line}></View>
+        <Pressable style={[styles.button, { backgroundColor: "#3963C7" }]}>
+          <AntDesign name="facebook-square" size={20} color="white" />
+          <Text style={styles.buttonText}>Sign up with Facebook</Text>
         </Pressable>
-        <Pressable>
-          <AntDesign name="google" size={24} color="black" />
-          <Text>Sign up with Google</Text>
+        <Pressable style={[styles.button, { backgroundColor: "#D1422B" }]}>
+          <AntDesign name="google" size={20} color="white" />
+          <Text style={styles.buttonText}>Sign up with Google</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -70,4 +68,20 @@ const styles = StyleSheet.create({
     gap: 40,
     marginTop: height * 0.02,
   },
+  buttonArea: {
+    marginTop: 40,
+    alignItems: "center",
+  },
+  line: {},
+  button: {
+    flexDirection: "row",
+    marginTop: 20,
+    gap: 8,
+    alignItems: "center",
+    width: 300,
+    paddingVertical: 10,
+    borderRadius: 50,
+    justifyContent: "center",
+  },
+  buttonText: { color: "white", fontWeight: "600" },
 });
