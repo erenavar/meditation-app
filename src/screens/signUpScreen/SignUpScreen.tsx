@@ -28,7 +28,15 @@ const SignUpScreen = () => {
         <Input icon={"key"} placeholder={"Password"} />
         <Input icon={"key"} placeholder={"Re-Password"} />
       </View>
-      <Button />
+      <View>
+        <Button title="SIGN UP" />
+        <View>
+          <Text>Or sign in with</Text>
+          <View></View>
+        </View>
+        <Button title="Sign up with Facebook" />
+        <Button title="Sign up with Google" />
+      </View>
     </SafeAreaView>
   );
 };

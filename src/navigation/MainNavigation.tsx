@@ -14,13 +14,13 @@ function MainNavigation() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Intro"
-          component={IntroScreen}
+          name="SignUp"
+          component={SignUpScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="SignUp"
-          component={SignUpScreen}
+          name="Intro"
+          component={IntroScreen}
           options={{ headerShown: false }}
         />
 
