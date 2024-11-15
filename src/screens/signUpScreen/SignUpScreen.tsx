@@ -4,17 +4,21 @@ import Input from "../../components/Input";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import Button from "../../components/Button";
 
 const { width, height } = Dimensions.get("window");
 const SignUpScreen = () => {
+  const navigaton = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <AntDesign
-        name="arrowleft"
-        size={34}
-        color="black"
-        style={styles.arrow}
-      />
+      <Pressable onPress={() => navigaton.navigate("Login")}>
+        <AntDesign
+          name="arrowleft"
+          size={34}
+          color="black"
+          style={styles.arrow}
+        />
+      </Pressable>
       <View style={styles.textArea}>
         <Text style={styles.text}>Create An Account</Text>
       </View>
@@ -24,6 +28,7 @@ const SignUpScreen = () => {
         <Input icon={"key"} placeholder={"Password"} />
         <Input icon={"key"} placeholder={"Re-Password"} />
       </View>
+      <Button />
     </SafeAreaView>
   );
 };
