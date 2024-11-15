@@ -1,11 +1,11 @@
 import React from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Pressable, StyleSheet, Text, View } from "react-native";
 import Input from "../../components/Input";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
-
 const SignUpScreen = () => {
   return (
     <SafeAreaView style={styles.container}>

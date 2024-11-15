@@ -32,9 +32,11 @@ const LoginScreen = () => {
       </View>
 
       <View style={styles.actionArea}>
-        <View style={styles.arrow}>
+        <Pressable
+          style={styles.arrow}
+          onPress={() => () => navigation.navigate("TabBar")}>
           <AntDesign name="arrowright" size={35} color="white" />
-        </View>
+        </Pressable>
         <View style={styles.userArea}>
           <View>
             <Text style={{ fontSize: 24 }}>Üye Girişi</Text>
@@ -53,8 +55,8 @@ const LoginScreen = () => {
             <Pressable>
               <Text style={styles.buttonText}>Şifremi Unuttum</Text>
             </Pressable>
-            <Pressable onPress={() => navigation.navigate("TabBar")}>
-              <Text style={styles.buttonText}>Giriş</Text>
+            <Pressable onPress={() => navigation.navigate("SignUp")}>
+              <Text style={styles.buttonText}>Üye Ol</Text>
             </Pressable>
           </View>
         </View>
