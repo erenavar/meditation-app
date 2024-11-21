@@ -1,5 +1,12 @@
 import React from "react";
-import { Dimensions, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import Input from "../../components/Input";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,7 +17,7 @@ const { width, height } = Dimensions.get("window");
 const SignUpScreen = () => {
   const navigaton = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
       <Pressable onPress={() => navigaton.navigate("Login")}>
         <AntDesign
           name="arrowleft"
@@ -46,7 +53,20 @@ const SignUpScreen = () => {
           <Text style={styles.buttonText}>Sign up with Google</Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+      <View style={styles.bottomLine}>
+        <Text style={{ fontSize: 18 }}>Have an account? </Text>
+        <Pressable>
+          <Text
+            style={{
+              color: "dodgerblue",
+              textDecorationLine: "underline",
+              fontSize: 18,
+            }}>
+            Sign In
+          </Text>
+        </Pressable>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -55,6 +75,7 @@ export default SignUpScreen;
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: width * 0.04,
+    marginTop: width * 0.04,
   },
   arrow: {
     marginTop: height * 0.04,
@@ -99,4 +120,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonText: { color: "white", fontWeight: "600" },
+  bottomLine: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 40,
+  },
 });
