@@ -30,8 +30,13 @@ const SignUpScreen = () => {
       </View>
       <View style={styles.buttonArea}>
         <Button title="SIGN UP" />
-        <Text style={{ fontSize: 15, marginTop: 20 }}>Or sign in with</Text>
-        <View style={styles.line}></View>
+        <View style={styles.orLine}>
+          <View style={styles.line}></View>
+          <Text style={{ fontSize: 15, marginTop: 20, marginHorizontal: 10 }}>
+            Or sign in with
+          </Text>
+          <View style={styles.line}></View>
+        </View>
         <Pressable style={[styles.button, { backgroundColor: "#3963C7" }]}>
           <AntDesign name="facebook-square" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Facebook</Text>
@@ -72,7 +77,17 @@ const styles = StyleSheet.create({
     marginTop: 40,
     alignItems: "center",
   },
-  line: {},
+  orLine: {
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
+  },
+  line: {
+    borderBottomColor: "gray",
+    borderBottomWidth: 1,
+    width: "100%",
+    marginVertical: 7,
+  },
   button: {
     flexDirection: "row",
     marginTop: 20,
