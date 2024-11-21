@@ -1,10 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../screens/loginScreen/LoginScreen";
-import ForgotPasswordScreen from "../screens/forgotPasswordScreen/ForgotPasswordScreen";
 import { RootStackParamList } from "./types";
 import TabBarNavigation from "./TabBarNavigation";
-import IntroScreen from "../screens/carousel/IntroScreen";
+import IntroScreen from "../screens/introScreen/IntroScreen";
 import SignUpScreen from "../screens/signUpScreen/SignUpScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

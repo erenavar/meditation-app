@@ -1,13 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/homeScreen/HomeScreen";
-import ProfileScreen from "../screens/profileScreen/ProfileScreen";
 import { TabParamList } from "./types";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Platform } from "react-native";
 import OtherScreen from "../screens/otherScreen/OtherScreen";
 import BlogScreen from "../screens/blogScreen/BlogScreen";
-import MeditationScreen from "../screens/meditationScreen/MeditationScreen";
+import MeditationScreen from "../screens/meditatonScreen/MeditationScreen";
+import ProfileScreen from "../screens/profileScreen/ProfileScreen";
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -21,8 +21,7 @@ function TabBarNavigation() {
         tabBarStyle: {
           height: Platform.OS === "android" ? 65 : 80,
         },
-      }}
-    >
+      }}>
       <Tab.Screen
         name="Home"
         component={HomeScreen}
