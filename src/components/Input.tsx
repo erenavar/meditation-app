@@ -8,17 +8,12 @@ interface IInputProps extends TextInputProps {
   placeholder: string;
 }
 
-const Input = ({ icon, placeholder, value, func }: IInputProps) => {
+const Input = ({ icon, placeholder, value }: IInputProps) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <AntDesign name={icon} size={24} color="black" />
-      <TextInput
-        placeholder={placeholder}
-        style={styles.input}
-        value={value}
-        onChangeText={(text) => func(text)}
-      />
+      <TextInput placeholder={placeholder} style={styles.input} value={value} />
     </View>
   );
 };

@@ -7,39 +7,15 @@ import {
   Text,
   View,
 } from "react-native";
-import Input from "../../components/Input";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../../components/Button";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../fireBaseConfig";
+import SignUpForm from "../../components/SignUpForm";
 
 const { width, height } = Dimensions.get("window");
 const SignUpScreen = () => {
-  // const [userData, setUserData] = useState({
-  //   email: "",
-  //   name: "",
-  // });
-  const [test, setTest] = useState({ name: "", surname: "" });
   const navigaton = useNavigation();
 
-  const func = (x) => {
-    setTest((prevState) => ({ ...prevState, name: x }));
-  };
-
-  const signUp = () => {
-    // createUserWithEmailAndPassword(auth, "eren@eren.com", "password")
-    //   .then((userCredential) => {
-    //     // Signed up
-    //     const user = userCredential.user;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //   });
-  };
   return (
     <ScrollView style={styles.container}>
       <Pressable onPress={() => navigaton.navigate("Login")}>
@@ -54,10 +30,7 @@ const SignUpScreen = () => {
         <Text style={styles.text}>Create An Account</Text>
       </View>
       <View style={styles.inputArea}>
-        <Input icon={"mail"} placeholder={"Email"} func={func} />
-        <Input icon={"user"} placeholder={"Name"} />
-        <Input icon={"key"} placeholder={"Password"} />
-        <Input icon={"key"} placeholder={"Re-Password"} />
+        <SignUpForm />
       </View>
       <View style={styles.buttonArea}>
         <Button title="SIGN UP" onPress={() => alert(test)} />
@@ -116,7 +89,7 @@ const styles = StyleSheet.create({
   inputArea: {
     marginHorizontal: width * 0.05,
     gap: 40,
-    marginTop: height * 0.02,
+    marginTop: height * 0.0001,
   },
   buttonArea: {
     marginTop: 40,
