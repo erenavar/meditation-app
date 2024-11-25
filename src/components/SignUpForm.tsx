@@ -1,7 +1,8 @@
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { Component } from "react";
 import { Formik } from "formik";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import Button from "./Button";
 
 export class SignUpForm extends Component {
   render() {
@@ -52,8 +53,10 @@ export class SignUpForm extends Component {
                   placeholder="Parolanızı tekrar giriniz"
                 />
               </View>
-
-              <Button onPress={console.log("email", values)} title="Submit" />
+              <View style={styles.buttonArea}>
+                <Button title="SIGN UP" onPress={() => alert("test")} />
+              </View>
+              {/* <Button onPress={console.log("email", values)} title="Submit" /> */}
             </>
           )}
         </Formik>
@@ -78,5 +81,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontSize: 17,
     marginLeft: 10,
+  },
+  buttonArea: {
+    marginLeft: 5,
+    marginTop: 40,
+    alignSelf: "center",
   },
 });
