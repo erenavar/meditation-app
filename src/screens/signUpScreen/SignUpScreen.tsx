@@ -33,7 +33,6 @@ const SignUpScreen = () => {
         <SignUpForm />
       </View>
       <View style={styles.buttonArea}>
-        <Button title="SIGN UP" onPress={() => alert(test)} />
         <View style={styles.orLine}>
           <View style={styles.line}></View>
           <Text style={{ fontSize: 15, marginTop: 20, marginHorizontal: 10 }}>
