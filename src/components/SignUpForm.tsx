@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { Component } from "react";
 import { Formik } from "formik";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "lightgray",
     alignItems: "center",
     marginTop: 25,
-    paddingBottom: 10,
+    paddingBottom: Platform.OS === "ios" ? 10 : null,
   },
   input: {
     alignItems: "center",

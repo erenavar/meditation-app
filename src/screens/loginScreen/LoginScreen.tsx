@@ -25,7 +25,7 @@ const LoginScreen = () => {
 
         <View style={styles.imageArea}>
           <Image
-            source={require("../../../assets/loginImage.jpg")}
+            source={require("../../../assets/img.jpg")}
             style={styles.image}
           />
         </View>
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
   logoArea: {
     flex: 3,
     backgroundColor: "#73c3dd",
-    zIndex: -1,
   },
   text: {
     color: "white",
@@ -84,12 +83,12 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     left: 30,
     top: (Dimensions.get("screen").height * 1) / 5,
+    zIndex: 1,
   },
   imageArea: {
     alignItems: "flex-end",
     paddingTop: (height * 1) / 15,
     paddingRight: 10,
-    zIndex: -1,
   },
   image: {
     height: 200,
