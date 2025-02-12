@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
-import Button from "../../components/Button";
 import SignUpForm from "../../components/SignUpForm";
 
 const { width, height } = Dimensions.get("window");
