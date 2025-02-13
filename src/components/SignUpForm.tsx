@@ -6,22 +6,22 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "./Button";
 import { ICreateUser, ISignup } from "./types";
 import { auth } from "../../fireBaseConfig";
-import { getAuth } from "firebase/auth";
 
 export class SignUpForm extends Component {
   createUser = async (values: ICreateUser) => {
     if (values.password === values.confirmPassword) {
-      createUserWithEmailAndPassword(auth, "eren@eren.com", "1234567")
-        .then((userCredential) => {
-          const user = userCredential.user;
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // ..
-        });
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          "eren@eren.com",
+          "1234567"
+        );
+        console.log("User created:", userCredential.user);
+      } catch (error) {
+        console.error("Error creating user:", error.code, error.message);
+      }
     } else {
-      alert("Please, Conform Your Password");
+      alert("Please, Confirm Your Password");
     }
   };
 
@@ -77,9 +77,8 @@ export class SignUpForm extends Component {
                 />
               </View>
               <View style={styles.buttonArea}>
-                <Button title="SIGN UP" onPress={() => this.createUser()} />
+                <Button title="SIGN UP" onPress={handleSubmit} />
               </View>
-              {/* <Button onPress={console.log("email", values)} title="Submit" /> */}
             </>
           )}
         </Formik>
