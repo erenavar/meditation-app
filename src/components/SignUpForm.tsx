@@ -13,12 +13,11 @@ export class SignUpForm extends Component {
       try {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
-          "eren@eren.com",
-          "1234567"
+          values.email,
+          values.password
         );
-        console.log("User created:", userCredential.user);
       } catch (error) {
-        console.error("Error creating user:", error.code, error.message);
+        console.error("Error creating user:", error.code);
       }
     } else {
       alert("Please, Confirm Your Password");
@@ -29,7 +28,12 @@ export class SignUpForm extends Component {
     return (
       <View>
         <Formik
-          initialValues={{ name: "", email: "", password: "", confirmPass: "" }}
+          initialValues={{
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          }}
           onSubmit={(values, { resetForm }) => {
             this.createUser(values);
             resetForm();
@@ -64,16 +68,18 @@ export class SignUpForm extends Component {
                   onBlur={handleBlur("password")}
                   value={values.password}
                   placeholder="Şifre"
+                  secureTextEntry={true}
                 />
               </View>
               <View style={styles.inputContainer}>
                 <AntDesign name="key" size={24} color="black" />
                 <TextInput
                   style={styles.input}
-                  onChangeText={handleChange("confirmPass")}
-                  onBlur={handleBlur("confirmPass")}
-                  value={values.confirmPass}
+                  onChangeText={handleChange("confirmPassword")}
+                  onBlur={handleBlur("confirmPassword")}
+                  value={values.confirmPassword}
                   placeholder="Parolanızı tekrar giriniz"
+                  secureTextEntry={true}
                 />
               </View>
               <View style={styles.buttonArea}>
