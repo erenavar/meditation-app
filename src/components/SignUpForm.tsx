@@ -17,7 +17,9 @@ export class SignUpForm extends Component {
           values.password
         );
       } catch (error) {
-        console.error("Error creating user:", error.code);
+        if (error.code === "auth/email-already-in-use") {
+          alert("Mail adresinizi kontrol ediniz...");
+        }
       }
     } else {
       alert("Please, Confirm Your Password");
@@ -36,7 +38,9 @@ export class SignUpForm extends Component {
           }}
           onSubmit={(values, { resetForm }) => {
             this.createUser(values);
-            resetForm();
+            if (!this.error.code) {
+              resetForm();
+            }
           }}>
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <>
