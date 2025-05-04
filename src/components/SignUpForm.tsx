@@ -6,7 +6,6 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "./Button";
 import { ICreateUser, ISignup } from "./types";
 import { auth } from "../../fireBaseConfig";
-import { FirebaseError } from "firebase/app";
 
 export class SignUpForm extends Component {
   createUser = async (values: ICreateUser) => {
@@ -17,14 +16,14 @@ export class SignUpForm extends Component {
           values.email,
           values.password
         );
-      } catch (error) {
+      } catch (error: any) {
         if (error.code === "auth/email-already-in-use") {
-          console.log(error.code);
+          console.log(error.message);
           Alert.alert("Mail adresinizi kontrol ediniz...");
+        } else if (error.code === "auth/invalid-email") {
+          Alert.alert("Geçersiz mail adresi.Mailinizi kontrol ediniz.");
         }
       }
-    } else {
-      alert("Please, Confirm Your Password");
     }
   };
 
