@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Platform, StyleSheet, TextInput, View } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { Component } from "react";
 import { Formik } from "formik";
@@ -6,6 +6,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "./Button";
 import { ICreateUser, ISignup } from "./types";
 import { auth } from "../../fireBaseConfig";
+import { FirebaseError } from "firebase/app";
 
 export class SignUpForm extends Component {
   createUser = async (values: ICreateUser) => {
@@ -18,7 +19,8 @@ export class SignUpForm extends Component {
         );
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
-          alert("Mail adresinizi kontrol ediniz...");
+          console.log(error.code);
+          Alert.alert("Mail adresinizi kontrol ediniz...");
         }
       }
     } else {

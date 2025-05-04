@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import {
   Dimensions,
   Pressable,
@@ -10,14 +10,19 @@ import {
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import SignUpForm from "../../components/SignUpForm";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/types";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+type Props = NativeStackScreenProps<RootStackParamList, "SignUp">;
 
 const { width, height } = Dimensions.get("window");
-const SignUpScreen = () => {
-  const navigaton = useNavigation();
 
+const SignUpScreen: FC<Props> = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <ScrollView style={styles.container}>
-      <Pressable onPress={() => navigaton.navigate("Login")}>
+      <Pressable onPress={() => navigation.navigate("Login")}>
         <AntDesign
           name="arrowleft"
           size={34}
@@ -57,7 +62,7 @@ const SignUpScreen = () => {
               textDecorationLine: "underline",
               fontSize: 18,
             }}>
-            Sign In
+            Log In
           </Text>
         </Pressable>
       </View>
