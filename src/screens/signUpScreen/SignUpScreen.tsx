@@ -55,7 +55,7 @@ const SignUpScreen: FC<Props> = () => {
       </View>
       <View style={styles.bottomLine}>
         <Text style={{ fontSize: 18 }}>Have an account? </Text>
-        <Pressable>
+        <Pressable onPress={() => navigation.navigate("Login")}>
           <Text
             style={{
               color: "dodgerblue",

@@ -34,7 +34,7 @@ const LoginScreen = () => {
       <View style={styles.actionArea}>
         <Pressable
           style={styles.arrow}
-          onPress={() => () => navigation.navigate("TabBar")}>
+          onPress={() => navigation.navigate("TabBar")}>
           <AntDesign name="arrowright" size={35} color="white" />
         </Pressable>
         <View style={styles.userArea}>

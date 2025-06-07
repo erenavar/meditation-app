@@ -21,7 +21,7 @@ export class SignUpForm extends Component {
           console.log(error.message);
           Alert.alert("Mail adresinizi kontrol ediniz...");
         } else if (error.code === "auth/invalid-email") {
-          Alert.alert("Geçersiz mail adresi.Mailinizi kontrol ediniz.");
+          Alert.alert("Geçersiz mail adresi. Mailinizi kontrol ediniz.");
         }
       }
     }
