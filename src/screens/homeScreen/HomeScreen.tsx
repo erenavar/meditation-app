@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Svg, { Polygon } from "react-native-svg";
 
 const HomeScreen = () => {
   let date = new Date();
@@ -13,7 +15,7 @@ const HomeScreen = () => {
         <Text>{today}</Text>
       </View>
       <View style={styles.lastMeditation}>
-        <Text>Test</Text>
+        <View></View>
         <Text>Test</Text>
         <Text>Test</Text>
       </View>
