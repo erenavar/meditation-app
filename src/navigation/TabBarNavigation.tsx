@@ -15,11 +15,15 @@ function TabBarNavigation() {
   return (
     <Tab.Navigator
       screenOptions={{
+        // headerStyle: {
+        //   backgroundColor: "#E5F4F2",
+        // },
         tabBarLabelStyle: {
           marginBottom: Platform.OS === "android" ? 15 : undefined,
         },
         tabBarStyle: {
           height: Platform.OS === "android" ? 65 : 80,
+          // backgroundColor: "#E5F4F2",
         },
       }}>
       <Tab.Screen
