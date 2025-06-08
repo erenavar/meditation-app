@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import Svg, { Polygon } from "react-native-svg";
+import { PentagonIcon } from "../../components/PentagonIcon";
 
 const HomeScreen = () => {
   let date = new Date();
@@ -14,10 +13,20 @@ const HomeScreen = () => {
         <Text>Son Ziyaret: 3-8-2020</Text>
         <Text>{today}</Text>
       </View>
-      <View style={styles.lastMeditation}>
-        <View></View>
-        <Text>Test</Text>
-        <Text>Test</Text>
+      <View style={styles.lastMeditationArea}>
+        <View style={styles.iconWrapper}>
+          <PentagonIcon />
+        </View>
+
+        <View style={styles.textContainer}>
+          <Text style={styles.mainText}>Gunluk Meditasyon</Text>
+          <Text style={styles.dateText}>26 Sub 2025</Text>
+        </View>
+
+        <View style={styles.rightTextContainer}>
+          <Text style={styles.categoryText}>Uyku</Text>
+          <Text style={styles.durationText}>5 Dakika</Text>
+        </View>
       </View>
     </View>
   );
@@ -34,12 +43,42 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
   },
-  lastMeditation: {
+  lastMeditationArea: {
     backgroundColor: "#fff",
     margin: 15,
     borderRadius: 10,
     flexDirection: "row",
-    justifyContent: "space-around",
-    padding: 30,
+    alignItems: "center",
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    justifyContent: "space-between",
+  },
+  iconWrapper: {
+    marginRight: 10,
+  },
+  textContainer: {
+    flex: 1,
+  },
+  mainText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 4,
+  },
+  dateText: {
+    fontSize: 14,
+    color: "#666",
+  },
+  rightTextContainer: {
+    alignItems: "flex-end",
+  },
+  categoryText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginBottom: 4,
+    color: "#333",
+  },
+  durationText: {
+    fontSize: 14,
+    color: "#666",
   },
 });
