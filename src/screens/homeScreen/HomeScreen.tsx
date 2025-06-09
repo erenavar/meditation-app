@@ -11,21 +11,19 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <View style={styles.dateLine}>
         <Text>Son Ziyaret: 3-8-2020</Text>
-        <Text>{today}</Text>
+        <Text>Tarih: {today}</Text>
       </View>
       <View style={styles.lastMeditationArea}>
         <View style={styles.iconWrapper}>
           <PentagonIcon />
+          <View style={styles.info}>
+            <Text style={styles.name}>Gunluk Meditasyon</Text>
+            <Text style={styles.meditationDate}>16 Sub 2025</Text>
+          </View>
         </View>
-
-        <View style={styles.textContainer}>
-          <Text style={styles.mainText}>Gunluk Meditasyon</Text>
-          <Text style={styles.dateText}>26 Sub 2025</Text>
-        </View>
-
-        <View style={styles.rightTextContainer}>
-          <Text style={styles.categoryText}>Uyku</Text>
-          <Text style={styles.durationText}>5 Dakika</Text>
+        <View style={styles.info2}>
+          <Text style={styles.genre}>SLEEP</Text>
+          <Text style={styles.duration}>5 Minutes</Text>
         </View>
       </View>
     </View>
@@ -44,41 +42,36 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   lastMeditationArea: {
-    backgroundColor: "#fff",
-    margin: 15,
-    borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 15,
-    paddingHorizontal: 15,
     justifyContent: "space-between",
+    padding: 15,
+    margin: 15,
+    borderRadius: 13,
+    backgroundColor: "#fff",
   },
   iconWrapper: {
     marginRight: 10,
+    flexDirection: "row",
   },
-  textContainer: {
-    flex: 1,
+  info: {
+    justifyContent: "center",
+    marginLeft: 10,
+    lineHeight: 100,
   },
-  mainText: {
+  name: {
+    lineHeight: 25,
     fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 4,
+    fontWeight: 500,
+    letterSpacing: 0.5,
   },
-  dateText: {
+  meditationDate: {
+    color: "#76908E",
     fontSize: 14,
-    color: "#666",
+    letterSpacing: 0.5,
   },
-  rightTextContainer: {
-    alignItems: "flex-end",
-  },
-  categoryText: {
-    fontSize: 14,
-    fontWeight: "bold",
-    marginBottom: 4,
-    color: "#333",
-  },
-  durationText: {
-    fontSize: 14,
-    color: "#666",
-  },
+
+  info2: { justifyContent: "center" },
+  genre: {},
+  duration: {},
 });
