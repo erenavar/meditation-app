@@ -71,7 +71,23 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
 
-  info2: { justifyContent: "center" },
-  genre: {},
-  duration: {},
+  info2: {
+    justifyContent: "flex-start",
+    gap: 4,
+  },
+  genre: {
+    fontSize: 10,
+    fontWeight: 900,
+    backgroundColor: "#0092C9",
+    color: "#fff",
+    borderRadius: 4,
+    alignSelf: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 3,
+  },
+  duration: {
+    color: "#76908E",
+    fontSize: 14,
+    letterSpacing: 0.5,
+  },
 });
