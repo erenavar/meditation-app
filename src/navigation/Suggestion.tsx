@@ -1,13 +1,27 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import WhiteText from "../components/WhiteText";
 
 const Suggestion = () => {
   return (
-    <View style={{ height: "30%" }}>
+    <View>
       <ImageBackground
+        resizeMode="stretch"
         source={require("../../assets/suggestionBg.jpg")}
         style={styles.container}>
-        <Text>Suggestion</Text>
+        <View>
+          <WhiteText>Test</WhiteText>
+          <WhiteText>Test</WhiteText>
+        </View>
+        <View>
+          {" "}
+          <WhiteText>Test</WhiteText>
+        </View>
+        <View>
+          {" "}
+          <WhiteText>Test</WhiteText>
+          <WhiteText>Test</WhiteText>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -18,7 +32,12 @@ export default Suggestion;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "purple",
-    height: "100%",
+    height: 300,
     width: "100%",
+    borderRadius: 16,
+    overflow: "hidden",
+    justifyContent: "space-between",
+    paddingVertical: 20,
   },
+  label1: {},
 });
