@@ -5,7 +5,10 @@ const LastMeditation = () => {
   return (
     <View style={styles.lastMeditationArea}>
       <View style={styles.iconWrapper}>
-        <PentagonIcon />
+        <View style={{ alignSelf: "center" }}>
+          <PentagonIcon iconName="weather-sunset" />
+        </View>
+
         <View style={styles.info}>
           <Text style={styles.name}>Gunluk Meditasyon</Text>
           <Text style={styles.meditationDate}>16 Sub 2025</Text>

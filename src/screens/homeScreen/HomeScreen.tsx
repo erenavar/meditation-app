@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import LastMeditation from "../../components/LastMeditation";
-import Suggestion from "../../navigation/Suggestion";
+import Suggestion from "../../navigation/Recommendation";
 
 const HomeScreen = () => {
   let date = new Date();
