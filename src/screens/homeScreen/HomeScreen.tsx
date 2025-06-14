@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import LastMeditation from "../../components/LastMeditation";
 import Suggestion from "../../navigation/Recommendation";
+import MeditationCard from "../../components/MeditationCard";
 
 const HomeScreen = () => {
   let date = new Date();
@@ -9,14 +10,22 @@ const HomeScreen = () => {
     date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.dateLine}>
         <Text>Son Ziyaret: 3-8-2020</Text>
         <Text>Tarih: {today}</Text>
       </View>
       <LastMeditation />
       <Suggestion />
-    </View>
+
+      <View style={styles.allMeditations}>
+        <Text style={styles.title}>All Meditations</Text>
+
+        {[...Array(4)].map((_, i) => (
+          <MeditationCard key={i} />
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -31,5 +40,13 @@ const styles = StyleSheet.create({
   dateLine: {
     flexDirection: "row",
     justifyContent: "space-around",
+  },
+  allMeditations: {
+    marginTop: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 800,
+    letterSpacing: 0.8,
   },
 });
