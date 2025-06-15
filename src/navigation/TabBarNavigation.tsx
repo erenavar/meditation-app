@@ -6,7 +6,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Platform } from "react-native";
 import OtherScreen from "../screens/otherScreen/OtherScreen";
 import BlogScreen from "../screens/blogScreen/BlogScreen";
-import MeditationScreen from "../screens/meditatonScreen/MeditationScreen";
+import MeditationScreen from "../screens/meditationScreen/MeditationScreen";
 import ProfileScreen from "../screens/profileScreen/ProfileScreen";
 
 const Tab = createBottomTabNavigator<TabParamList>();

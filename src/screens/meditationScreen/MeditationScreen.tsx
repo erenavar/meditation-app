@@ -4,7 +4,7 @@ import React from "react";
 const MeditationScreen = () => {
   return (
     <View>
-      <Text>MeditatonScreen</Text>
+      <Text>MeditationScreen</Text>
     </View>
   );
 };
