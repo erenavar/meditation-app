@@ -1,17 +1,19 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import WhiteText from "./WhiteText";
 
 const MeditationCard = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
+        resizeMode="cover"
         style={styles.image}
-        source={{ uri: "https://picsum.photos/100" }}>
-        <Text>Test</Text>
+        source={require("../../assets/card-image.jpg")}>
+        <WhiteText style={styles.label}>Test</WhiteText>
       </ImageBackground>
       <View style={styles.infoArea}>
         <Text style={styles.meditationName}>Icindeki Devi Uyandir</Text>
-        <Text>17 Dakika</Text>
+        <Text style={styles.duration}>17 Dakika</Text>
       </View>
     </View>
   );
@@ -24,12 +26,32 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 30,
   },
-  image: { flex: 1, height: 100, width: 100 },
+  image: {
+    display: "flex",
+    flex: 2,
+    height: 100,
+    width: "100%",
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  label: {
+    textAlign: "center",
+    backgroundColor: "#0092C9",
+    width: "100%",
+    fontWeight: "700",
+  },
   infoArea: {
     flex: 4,
-    marginLeft: 50,
+    marginLeft: 30,
+    justifyContent: "center",
+    gap: 10,
+    marginBottom: 20,
   },
   meditationName: {
     fontSize: 20,
+  },
+  duration: {
+    color: "#76908E",
+    fontSize: 14,
   },
 });
