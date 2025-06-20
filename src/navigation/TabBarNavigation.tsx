@@ -64,6 +64,7 @@ function TabBarNavigation() {
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="article" size={24} color="red" />
           ),
+          headerShown: false,
         }}
       />
       <Tab.Screen
