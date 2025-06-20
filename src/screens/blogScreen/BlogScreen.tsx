@@ -1,13 +1,20 @@
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Text, View } from "react-native";
 import PreviewCard from "../../components/PreviewCard";
 
-function BlogScreen() {
+const BlogScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <PreviewCard />
     </View>
   );
-}
+};
 
 export default BlogScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    padding: 10,
+  },
+});

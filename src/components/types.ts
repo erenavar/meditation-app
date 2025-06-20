@@ -1,5 +1,4 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { GlyphMap } from "@expo/vector-icons/build/createIconSet";
 
 export interface IProps {
   title: string;
@@ -23,4 +22,13 @@ export interface ICreateUser {
 export interface IPentagonItem {
   iconName: keyof typeof MaterialCommunityIcons.glyphMap;
   opacity?: number;
+}
+
+export interface IInstance {
+  id: number;
+  city: string;
+  title: string;
+  publishedAt: string;
+  images: string[];
+  description: string;
 }
