@@ -20,7 +20,7 @@ export default BlogScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#73c3dd",
+    backgroundColor: "#E5F4F2",
     padding: 30,
   },
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import LastMeditation from "../../components/LastMeditation";
-import Suggestion from "../../navigation/Recommendation";
+import Suggestion from "../../components/Recommendation";
 import MeditationCard from "../../components/MeditationCard";
 
 const HomeScreen = () => {

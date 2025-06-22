@@ -1,7 +1,7 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import WhiteText from "../components/WhiteText";
-import { PentagonIcon } from "../components/PentagonIcon";
+import WhiteText from "./WhiteText";
+import { PentagonIcon } from "./PentagonIcon";
 
 const Suggestion = () => {
   return (

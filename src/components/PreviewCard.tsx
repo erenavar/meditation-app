@@ -1,23 +1,35 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import articles from "../../assets/blog/articles.json";
 import { IInstance } from "./types";
 import WhiteText from "./WhiteText";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/types";
 
 const PreviewCard = () => {
   const instance: IInstance = articles[0];
   const image = { uri: instance.images[0] };
 
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <ImageBackground style={styles.ImageBackground} source={image}>
-      <WhiteText style={styles.title}>
-        {instance.city} : {instance.title}
-      </WhiteText>
+      <WhiteText style={styles.title}>{instance.title}</WhiteText>
       <View style={styles.line}></View>
       <WhiteText style={styles.date}>{instance.publishedAt}</WhiteText>
-      <View style={styles.iconArea}>
+      <TouchableOpacity
+        style={styles.iconArea}
+        onPress={() => navigation.navigate("Article")}>
         <AntDesign name="right" size={26} color="black" />
-      </View>
+      </TouchableOpacity>
     </ImageBackground>
   );
 };

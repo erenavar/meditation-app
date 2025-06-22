@@ -5,6 +5,7 @@ import { RootStackParamList } from "./types";
 import TabBarNavigation from "./TabBarNavigation";
 import IntroScreen from "../screens/introScreen/IntroScreen";
 import SignUpScreen from "../screens/signUpScreen/SignUpScreen";
+import ArticleScreen from "../screens/articleScreen/ArticleScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -32,6 +33,7 @@ function MainNavigation() {
           component={SignUpScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="Article" component={ArticleScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
