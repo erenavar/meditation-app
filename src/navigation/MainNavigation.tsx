@@ -33,7 +33,14 @@ function MainNavigation() {
           component={SignUpScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Article" component={ArticleScreen} />
+        <Stack.Screen
+          name="Article"
+          component={ArticleScreen}
+          options={({ route }) => ({
+            title: route.params.name,
+            headerBackTitleVisible: false,
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

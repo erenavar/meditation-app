@@ -1,7 +1,6 @@
 import {
   ImageBackground,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -27,7 +26,7 @@ const PreviewCard = () => {
       <WhiteText style={styles.date}>{instance.publishedAt}</WhiteText>
       <TouchableOpacity
         style={styles.iconArea}
-        onPress={() => navigation.navigate("Article")}>
+        onPress={() => navigation.navigate("Article", { name: instance.city })}>
         <AntDesign name="right" size={26} color="black" />
       </TouchableOpacity>
     </ImageBackground>
