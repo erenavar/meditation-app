@@ -37,6 +37,7 @@ function MainNavigation() {
           name="Article"
           component={ArticleScreen}
           options={({ route }) => ({
+            headerTitleStyle: { fontSize: 25 },
             title: route.params.name,
             headerBackTitleVisible: false,
           })}

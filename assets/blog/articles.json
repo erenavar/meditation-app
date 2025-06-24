@@ -2,14 +2,14 @@
   {
     "id": 1,
     "city": "Paris",
-    "title": "Paris: Aşıklar Şehri ve Işıkların Başkenti",
+    "title": "Aşıklar Şehri ve Işıkların Başkenti",
     "publishedAt": "2024-01-15",
     "images": [
       "https://images.unsplash.com/photo-1431274172761-fca41d930114",
       "https://images.unsplash.com/photo-1499856871958-5b9627545d1a",
       "https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f"
     ],
-    "description": "Paris, Sen Nehri'nin iki yakasında uzanan dünyaca ünlü romantik başkent, her yıl milyonlarca ziyaretçiyi kendine çeken büyülü bir şehirdir. Eyfel Kulesi, şehrin en ikonik simgesi olarak 1889'da inşa edilmiş ve 324 metre yüksekliğiyle Paris silüetine hakimdir. Louvre Müzesi, Mona Lisa dahil 35.000'den fazla sanat eserine ev sahipliği yapan dünyanın en büyük sanat müzesidir. Notre Dame Katedrali ise gotik mimarinin başyapıtı olarak 12. yüzyıldan beri ayakta durmaktadır. Şehrin zarif bulvarları, butik kafeleri ve lüks mağazaları Paris'e özgü bir atmosfer sunarken, Montmartre bölgesi sanatçılar için bir cennettir. Seine Nehri boyunca yapılacak bir tekne turu veya Luxembourg Bahçeleri'nde dinlenmek, Paris deneyiminin olmazsa olmazlarındandır. Fransız mutfağının eşsiz lezzetlerini tatmak için ise şehrin sayısız restoranı ve pastanesi ziyaretçilerini bekliyor. Her mevsim ayrı bir güzelliğe bürünen bu şehir, özellikle bahar aylarında kiraz çiçekleriyle adeta bir tabloya dönüşür."
+    "description": "Paris, Sen Nehri'nin iki yakasında uzanan dünyaca ünlü romantik başkent, her yıl milyonlarca ziyaretçiyi kendine çeken büyülü bir şehirdir. Eyfel Kulesi, şehrin en ikonik simgesi olarak 1889'da inşa edilmiş ve 324 metre yüksekliğiyle Paris silüetine hakimdir. \n\nLouvre Müzesi, Mona Lisa dahil 35.000'den fazla sanat eserine ev sahipliği yapan dünyanın en büyük sanat müzesidir. Notre Dame Katedrali ise gotik mimarinin başyapıtı olarak 12. yüzyıldan beri ayakta durmaktadır.Şehrin zarif bulvarları, butik kafeleri ve lüks mağazaları Paris'e özgü bir atmosfer sunarken, Montmartre bölgesi sanatçılar için bir cennettir. Seine Nehri boyunca yapılacak bir tekne turu veya Luxembourg Bahçeleri'nde dinlenmek, Paris deneyiminin olmazsa olmazlarındandır. \n\nFransız mutfağının eşsiz lezzetlerini tatmak için ise şehrin sayısız restoranı ve pastanesi ziyaretçilerini bekliyor. Her mevsim ayrı bir güzelliğe bürünen bu şehir, özellikle bahar aylarında kiraz çiçekleriyle adeta bir tabloya dönüşür."
   },
   {
     "id": 2,
