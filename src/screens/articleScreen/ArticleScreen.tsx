@@ -1,82 +1,103 @@
+import React, { useRef, FC } from "react";
 import {
-  Dimensions,
-  Image,
-  ScrollView,
   StyleSheet,
   Text,
   View,
+  Dimensions,
+  SafeAreaView,
+  Animated,
+  ImageSourcePropType,
 } from "react-native";
+import { IInstance } from "../../components/types";
 import articles from "../../../assets/blog/articles.json";
-import Animated, {
-  useAnimatedRef,
-  useAnimatedStyle,
-  useScrollViewOffset,
-  interpolate,
-} from "react-native-reanimated";
 
-const { width } = Dimensions.get("screen");
+const IMAGE_HEIGHT: number = Dimensions.get("window").height * 0.4;
 
-const ArticleScreen = ({}) => {
-  const instance = articles[0];
-  const image = { uri: instance.images[0] };
+const PreviewCard: FC = () => {
+  const instance: IInstance = articles[0];
 
-  const scrollRef = useAnimatedRef<Animated.ScrollView>();
-  const scrollOffset = useScrollViewOffset(scrollRef);
-  const animatedImageStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          scale: interpolate(scrollOffset.value, [0, 300, 600], [1, 1.2, 1]),
-        },
-      ],
-    };
+  const image: ImageSourcePropType = { uri: instance.images[0] };
+
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const imageTranslateY = scrollY.interpolate({
+    inputRange: [0, IMAGE_HEIGHT],
+    outputRange: [0, IMAGE_HEIGHT * 0.5],
+    extrapolate: "clamp",
+  });
+  const imageOpacity = scrollY.interpolate({
+    inputRange: [0, IMAGE_HEIGHT * 0.8],
+    outputRange: [1, 0],
+    extrapolate: "clamp",
   });
 
   return (
-    <View style={styles.container}>
-      <View style={{ marginHorizontal: 15 }}>
+    <SafeAreaView style={styles.wrapper}>
+      <Animated.ScrollView
+        stickyHeaderIndices={[1]}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: true }
+        )}
+        scrollEventThrottle={16}>
         <Animated.Image
           source={image}
-          style={[styles.img, animatedImageStyle]}
-          resizeMode="cover"
+          style={[
+            styles.image,
+            {
+              transform: [{ translateY: imageTranslateY }],
+              opacity: imageOpacity,
+            },
+          ]}
         />
-      </View>
-      <ScrollView
-        ref={scrollRef}
-        showsVerticalScrollIndicator={false}
-        style={{
-          paddingHorizontal: 15,
-          borderRadius: 20,
-          backgroundColor: "white",
-        }}>
-        <View>
+        <View style={styles.stickyHeader}>
           <Text style={styles.title}>{instance.title}</Text>
           <Text style={styles.date}>{instance.publishedAt}</Text>
-          <Text style={styles.desc}>{instance.description}</Text>
         </View>
-      </ScrollView>
-    </View>
+        <View style={styles.content}>
+          <Text style={styles.body}>{instance.description}</Text>
+        </View>
+      </Animated.ScrollView>
+    </SafeAreaView>
   );
 };
 
-export default ArticleScreen;
-
+export default PreviewCard;
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
-    backgroundColor: "#E5F4F2",
   },
-  img: {
+  image: {
+    height: IMAGE_HEIGHT,
     width: "100%",
-    height: width / 1.5,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 0,
+  },
+  stickyHeader: {
+    marginTop: IMAGE_HEIGHT,
+    padding: 20,
+    backgroundColor: "white",
+    borderBottomWidth: 1,
+    borderBottomColor: "#f0f0f0",
+    zIndex: 1,
+  },
+  content: {
+    padding: 20,
+    backgroundColor: "white",
   },
   title: {
-    fontSize: 39,
-    marginTop: 30,
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
-  date: { marginVertical: 20, color: "#B4B5BC", fontSize: 17 },
-  desc: {
-    fontSize: 24,
-    borderRadius: 20,
+  date: {
+    fontSize: 14,
+    color: "gray",
+  },
+  body: {
+    fontSize: 16,
+    lineHeight: 24,
   },
 });
