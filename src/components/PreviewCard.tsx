@@ -1,33 +1,32 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import articles from "../../assets/blog/articles.json";
 import { IInstance } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/types";
 
-const PreviewCard = () => {
-  const instance: IInstance = articles[0];
-
-  const image = { uri: instance.images[0] };
-
+const PreviewCard = (props: IInstance) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <View style={styles.container}>
       <View style={styles.imgArea}>
-        <Image source={image} style={styles.img} resizeMode="stretch" />
+        <Image
+          source={{ uri: props.images[0] }}
+          style={styles.img}
+          resizeMode="stretch"
+        />
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Article", { name: instance.city });
+          navigation.navigate("Article", { name: props.city });
         }}>
         <View style={styles.titleArea}>
-          <Text style={styles.title}>{instance.title}</Text>
-          <Text style={styles.date}>{instance.publishedAt}</Text>
+          <Text style={styles.title}>{props.title}</Text>
+          <Text style={styles.date}>{props.publishedAt}</Text>
         </View>
         <Text numberOfLines={3} style={styles.desc}>
-          {instance.description}
+          {props.description}
         </Text>
       </TouchableOpacity>
     </View>

@@ -12,14 +12,10 @@ import { IInstance } from "../../components/types";
 import articles from "../../../assets/blog/articles.json";
 
 const IMAGE_HEIGHT: number = Dimensions.get("window").height * 0.4;
-
 const PreviewCard: FC = () => {
   const instance: IInstance = articles[0];
-
   const image: ImageSourcePropType = { uri: instance.images[0] };
-
   const scrollY = useRef(new Animated.Value(0)).current;
-
   const imageTranslateY = scrollY.interpolate({
     inputRange: [0, IMAGE_HEIGHT],
     outputRange: [0, IMAGE_HEIGHT * 0.5],

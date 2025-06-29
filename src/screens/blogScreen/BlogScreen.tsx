@@ -1,19 +1,15 @@
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import PreviewCard from "../../components/PreviewCard";
+import articles from "../../../assets/blog/articles.json";
 
 const BlogScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={styles.container}>
-        <View>
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-          <PreviewCard />
-        </View>
+        {articles.map((article) => (
+          <PreviewCard key={article.id} {...article} />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
@@ -26,6 +22,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: "#E5F4F2",
     padding: 20,
-    gap: 20,
+    gap: 10,
   },
 });

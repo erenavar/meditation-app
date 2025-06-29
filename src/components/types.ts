@@ -25,10 +25,10 @@ export interface IPentagonItem {
 }
 
 export interface IInstance {
-  id: number;
+  id?: number;
   city: string;
   title: string;
+  description: string;
   publishedAt: string;
   images: string[];
-  description: string;
 }
