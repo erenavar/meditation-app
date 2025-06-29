@@ -26,9 +26,7 @@ const PreviewCard = () => {
           <Text style={styles.title}>{instance.title}</Text>
           <Text style={styles.date}>{instance.publishedAt}</Text>
         </View>
-        <Text
-          numberOfLines={3}
-          style={{ marginTop: 10, fontSize: 14, lineHeight: 20 }}>
+        <Text numberOfLines={3} style={styles.desc}>
           {instance.description}
         </Text>
       </TouchableOpacity>
@@ -42,9 +40,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     width: "100%",
-    aspectRatio: 0.7,
+    aspectRatio: 0.8,
     borderRadius: 20,
     padding: 10,
+    marginBottom: 30,
   },
   imgArea: {
     width: "100%",
@@ -70,4 +69,5 @@ const styles = StyleSheet.create({
     left: "auto",
     color: "gray",
   },
+  desc: { marginTop: 10, marginBottom: 50, fontSize: 14, lineHeight: 20 },
 });
