@@ -1,13 +1,13 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import articles from "../../assets/blog/articles.json";
 import { IInstance } from "./types";
-
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/types";
 
 const PreviewCard = () => {
   const instance: IInstance = articles[0];
+
   const image = { uri: instance.images[0] };
 
   const navigation =
@@ -26,20 +26,23 @@ const PreviewCard = () => {
           <Text style={styles.title}>{instance.title}</Text>
           <Text style={styles.date}>{instance.publishedAt}</Text>
         </View>
-
-        <Text numberOfLines={3} style={{ marginTop: 10 }}>
+        <Text
+          numberOfLines={3}
+          style={{ marginTop: 10, fontSize: 14, lineHeight: 20 }}>
           {instance.description}
         </Text>
       </TouchableOpacity>
     </View>
   );
 };
+
 export default PreviewCard;
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    height: "60%",
+    width: "100%",
+    aspectRatio: 0.7,
     borderRadius: 20,
     padding: 10,
   },
@@ -51,7 +54,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "90%",
     borderRadius: 10,
-    overflow: "hidden",
   },
   titleArea: {
     flexDirection: "row",

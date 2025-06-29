@@ -4,12 +4,16 @@ import PreviewCard from "../../components/PreviewCard";
 
 const BlogScreen = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView style={styles.container}>
-        <PreviewCard />
-        <PreviewCard />
-        <PreviewCard />
-        <PreviewCard />
+    <SafeAreaView>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View>
+          <PreviewCard />
+          <PreviewCard />
+          <PreviewCard />
+          <PreviewCard />
+          <PreviewCard />
+          <PreviewCard />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -19,7 +23,7 @@ export default BlogScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: "#E5F4F2",
     padding: 20,
     gap: 20,
