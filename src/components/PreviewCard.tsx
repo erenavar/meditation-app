@@ -19,7 +19,7 @@ const PreviewCard = (props: IInstance) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Article", { name: props.city });
+          navigation.navigate("Article", { props });
         }}>
         <View style={styles.titleArea}>
           <Text style={styles.title}>{props.title}</Text>

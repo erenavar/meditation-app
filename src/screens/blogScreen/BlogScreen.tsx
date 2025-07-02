@@ -8,7 +8,14 @@ const BlogScreen = () => {
     <SafeAreaView>
       <ScrollView contentContainerStyle={styles.container}>
         {articles.map((article) => (
-          <PreviewCard key={article.id} {...article} />
+          <PreviewCard
+            key={article.id}
+            city={article.city}
+            title={article.title}
+            description={article.description}
+            images={article.images}
+            publishedAt={article.publishedAt}
+          />
         ))}
       </ScrollView>
     </SafeAreaView>
