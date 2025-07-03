@@ -14,6 +14,7 @@ import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList, TabParamList } from "../../navigation/types";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import ShareButton from "../../components/ShareButton";
 
 const IMAGE_HEIGHT: number = Dimensions.get("window").height * 0.4;
 
@@ -26,7 +27,7 @@ const PreviewCard: FC<Props> = ({ route }) => {
   const instance: IInstance = articles[0];
   const image: ImageSourcePropType = { uri: instance.images[0] };
 
-  console.log(route.params.props.city);
+  const article = route.params.props;
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const imageTranslateY = scrollY.interpolate({
@@ -50,7 +51,7 @@ const PreviewCard: FC<Props> = ({ route }) => {
         )}
         scrollEventThrottle={16}>
         <Animated.Image
-          source={image}
+          source={{ uri: article.images[0] }}
           style={[
             styles.image,
             {
@@ -60,11 +61,14 @@ const PreviewCard: FC<Props> = ({ route }) => {
           ]}
         />
         <View style={styles.stickyHeader}>
-          <Text style={styles.title}>{instance.title}</Text>
-          <Text style={styles.date}>{instance.publishedAt}</Text>
+          <Text style={styles.title}>{article.title}</Text>
+          <View style={styles.center}>
+            <Text style={styles.date}>{article.publishedAt}</Text>
+            <ShareButton />
+          </View>
         </View>
         <View style={styles.content}>
-          <Text style={styles.body}>{instance.description}</Text>
+          <Text style={styles.body}>{article.description}</Text>
         </View>
       </Animated.ScrollView>
     </SafeAreaView>
@@ -101,9 +105,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
+  center: { flexDirection: "row", gap: 10, alignItems: "center" },
   date: {
     fontSize: 14,
     color: "gray",
+    alignSelf: "flex-end",
   },
   body: {
     fontSize: 16,
