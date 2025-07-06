@@ -1,11 +1,18 @@
 import { Alert, Platform, StyleSheet, TextInput, View } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { Component } from "react";
+import React, { Component, useMemo } from "react";
 import { Formik } from "formik";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "./Button";
-import { ICreateUser, ISignup } from "./types";
+import { ICreateUser } from "./types";
 import { auth } from "../../fireBaseConfig";
+
+const initialValues = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 export class SignUpForm extends Component {
   createUser = async (values: ICreateUser) => {
@@ -31,17 +38,10 @@ export class SignUpForm extends Component {
     return (
       <View>
         <Formik
-          initialValues={{
-            name: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-          }}
+          initialValues={initialValues}
           onSubmit={(values, { resetForm }) => {
             this.createUser(values);
-            if (!this.error.code) {
-              resetForm();
-            }
+            resetForm();
           }}>
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <>
@@ -53,6 +53,8 @@ export class SignUpForm extends Component {
                   onBlur={handleBlur("name")}
                   value={values.name}
                   placeholder="İsim"
+                  autoCapitalize="none"
+                  autoCorrect={false}
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -63,6 +65,9 @@ export class SignUpForm extends Component {
                   onBlur={handleBlur("email")}
                   value={values.email}
                   placeholder="E-Posta"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoCorrect={false}
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -111,6 +116,7 @@ const styles = StyleSheet.create({
     paddingBottom: Platform.OS === "ios" ? 10 : null,
   },
   input: {
+    flex: 1,
     alignItems: "center",
     fontSize: 17,
     marginLeft: 10,

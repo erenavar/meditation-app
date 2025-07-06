@@ -22,7 +22,6 @@ const LoginScreen = () => {
     <View style={styles.container}>
       <View style={styles.logoArea}>
         <Text style={styles.text}>Hoşgeldiniz</Text>
-
         <View style={styles.imageArea}>
           <Image
             source={require("../../../assets/img.jpg")}
