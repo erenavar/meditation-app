@@ -1,4 +1,11 @@
-import { Alert, Platform, StyleSheet, TextInput, View } from "react-native";
+import {
+  Alert,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { Component, useMemo } from "react";
 import { Formik } from "formik";
@@ -6,9 +13,19 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "./Button";
 import { ICreateUser } from "./types";
 import { auth } from "../../fireBaseConfig";
+import * as Yup from "yup";
+
+const signUpSchema = Yup.object().shape({
+  fullName: Yup.string()
+    .min(2, "Ad en az 2 harf içermek zorundadır")
+    .required("Zorunlu alan"),
+  email: Yup.string().email("Invalid email").required("Zorunlu alan"),
+  password: Yup.string().min(7, "Şifre en az 7 karakter olmak zorundadır."),
+  confirmPassword: Yup.string(),
+});
 
 const initialValues = {
-  name: "",
+  fullName: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -33,26 +50,26 @@ export class SignUpForm extends Component {
       }
     }
   };
-
   render() {
     return (
       <View>
         <Formik
+          validationSchema={signUpSchema}
           initialValues={initialValues}
           onSubmit={(values, { resetForm }) => {
             this.createUser(values);
             resetForm();
           }}>
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <>
               <View style={styles.inputContainer}>
                 <AntDesign name="user" size={24} color="black" />
                 <TextInput
                   style={styles.input}
-                  onChangeText={handleChange("name")}
-                  onBlur={handleBlur("name")}
-                  value={values.name}
-                  placeholder="İsim"
+                  onChangeText={handleChange("fullName")}
+                  onBlur={handleBlur("fullName")}
+                  value={values.fullName}
+                  placeholder="Ad Soyad"
                   autoCapitalize="none"
                   autoCorrect={false}
                 />
