@@ -19,6 +19,13 @@ export interface ICreateUser {
   confirmPassword: string;
 }
 
+export interface ISignUpForm {
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 export interface IPentagonItem {
   iconName: keyof typeof MaterialCommunityIcons.glyphMap;
   opacity?: number;

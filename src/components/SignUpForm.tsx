@@ -7,11 +7,11 @@ import {
   View,
 } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { Component, useMemo } from "react";
+import React, { Component } from "react";
 import { Formik } from "formik";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "./Button";
-import { ICreateUser } from "./types";
+import { ICreateUser, ISignUpForm } from "./types";
 import { auth } from "../../fireBaseConfig";
 import * as Yup from "yup";
 
@@ -24,14 +24,14 @@ const signUpSchema = Yup.object().shape({
   confirmPassword: Yup.string(),
 });
 
-const initialValues = {
+const initialValues: ISignUpForm = {
   fullName: "",
   email: "",
   password: "",
   confirmPassword: "",
 };
 
-export class SignUpForm extends Component {
+export class SignUpForm extends Component<{}, {}> {
   createUser = async (values: ICreateUser) => {
     if (values.password === values.confirmPassword) {
       try {
@@ -40,12 +40,14 @@ export class SignUpForm extends Component {
           values.email,
           values.password
         );
-      } catch (error: any) {
-        if (error.code === "auth/email-already-in-use") {
-          console.log(error.message);
-          Alert.alert("Mail adresinizi kontrol ediniz...");
-        } else if (error.code === "auth/invalid-email") {
-          Alert.alert("Geçersiz mail adresi. Mailinizi kontrol ediniz.");
+      } catch (error: unknown) {
+        if (error instanceof Error && "code" in error) {
+          const firebaseError = error as { code: string; message: string };
+          if (firebaseError.code === "auth/email-already-in-use") {
+            Alert.alert("Bu e-posta adresi zaten kullanımda.");
+          } else if (firebaseError.code === "auth/invalid-email") {
+            Alert.alert("Geçersiz e-posta adresi.");
+          }
         }
       }
     }
@@ -56,7 +58,7 @@ export class SignUpForm extends Component {
         <Formik
           validationSchema={signUpSchema}
           initialValues={initialValues}
-          onSubmit={(values, { resetForm }) => {
+          onSubmit={(values: ISignUpForm, { resetForm }) => {
             this.createUser(values);
             resetForm();
           }}>
@@ -74,6 +76,7 @@ export class SignUpForm extends Component {
                   autoCorrect={false}
                 />
               </View>
+              <Text>{errors.fullName}</Text>
               <View style={styles.inputContainer}>
                 <AntDesign name="mail" size={24} color="black" />
                 <TextInput
@@ -142,5 +145,8 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginTop: 40,
     alignSelf: "center",
+  },
+  errorText: {
+    color: "red",
   },
 });
