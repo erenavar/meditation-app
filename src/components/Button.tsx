@@ -1,17 +1,24 @@
 import React from "react";
-import { Pressable, PressableProps, StyleSheet, Text } from "react-native";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import {
+  TouchableOpacity,
+  TouchableOpacityProps,
+  StyleSheet,
+  Text,
+} from "react-native";
 
-interface IProps extends PressableProps {
+interface IProps extends TouchableOpacityProps {
   title: string;
   onPress: () => void;
 }
 
 export default function Button({ title, onPress }: IProps) {
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={onPress}
+      activeOpacity={0.7}>
       <Text style={styles.text}>{title}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 

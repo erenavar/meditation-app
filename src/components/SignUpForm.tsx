@@ -20,8 +20,13 @@ const signUpSchema = Yup.object().shape({
     .min(2, "Ad en az 2 harf içermek zorundadır")
     .required("Zorunlu alan"),
   email: Yup.string().email("Invalid email").required("Zorunlu alan"),
-  password: Yup.string().min(7, "Şifre en az 7 karakter olmak zorundadır."),
-  confirmPassword: Yup.string(),
+  password: Yup.string()
+    .min(7, "Şifre en az 7 karakter olmak zorundadır.")
+    .required("Zorunlu alan"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Şifreler eşleşmiyor")
+    .required("Şifre tekrarı zorunludur")
+    .required("Zorunlu alan"),
 });
 
 const initialValues: ISignUpForm = {
@@ -58,7 +63,9 @@ export class SignUpForm extends Component<{}, {}> {
         <Formik
           validationSchema={signUpSchema}
           initialValues={initialValues}
-          onSubmit={(values: ISignUpForm, { resetForm }) => {
+          validateOnChange={false}
+          validateOnBlur={false}
+          onSubmit={(values, { resetForm }) => {
             this.createUser(values);
             resetForm();
           }}>
@@ -76,7 +83,7 @@ export class SignUpForm extends Component<{}, {}> {
                   autoCorrect={false}
                 />
               </View>
-              <Text>{errors.fullName}</Text>
+              <Text style={{ color: "red" }}>{errors.fullName}</Text>
               <View style={styles.inputContainer}>
                 <AntDesign name="mail" size={24} color="black" />
                 <TextInput
@@ -90,6 +97,7 @@ export class SignUpForm extends Component<{}, {}> {
                   autoCorrect={false}
                 />
               </View>
+              <Text style={{ color: "red" }}>{errors.email}</Text>
               <View style={styles.inputContainer}>
                 <AntDesign name="key" size={24} color="black" />
                 <TextInput
@@ -101,6 +109,7 @@ export class SignUpForm extends Component<{}, {}> {
                   secureTextEntry={true}
                 />
               </View>
+              <Text style={{ color: "red" }}>{errors.password}</Text>
               <View style={styles.inputContainer}>
                 <AntDesign name="key" size={24} color="black" />
                 <TextInput
@@ -112,6 +121,7 @@ export class SignUpForm extends Component<{}, {}> {
                   secureTextEntry={true}
                 />
               </View>
+              <Text style={{ color: "red" }}>{errors.confirmPassword}</Text>
               <View style={styles.buttonArea}>
                 <Button title="SIGN UP" onPress={handleSubmit} />
               </View>
