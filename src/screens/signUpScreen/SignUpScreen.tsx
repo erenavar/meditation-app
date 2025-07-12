@@ -1,5 +1,5 @@
-import React, { FC } from "react";
 import {
+  Alert,
   Dimensions,
   Pressable,
   ScrollView,
@@ -7,19 +7,71 @@ import {
   Text,
   View,
 } from "react-native";
+import React, { useEffect } from "react"; // YENİ EKLENDİ: useEffect
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import SignUpForm from "../../components/SignUpForm";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/types";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-type Props = NativeStackScreenProps<RootStackParamList, "SignUp">;
+// --- YENİ EKLENEN IMPORT'LAR ---
+import { useAuthRequest } from "expo-auth-session/providers/facebook";
+import {
+  FacebookAuthProvider,
+  getAdditionalUserInfo,
+  signInWithCredential,
+} from "firebase/auth";
+import { auth } from "../../../firebaseConfig"; // db'yi de import ettiğinizi varsayıyorum
+import { doc, setDoc } from "firebase/firestore";
+import Constants from "expo-constants";
 
 const { width, height } = Dimensions.get("window");
 
-const SignUpScreen: FC<Props> = () => {
+const SignUpScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  // --- YENİ EKLENEN FACEBOOK GİRİŞ MANTIĞI ---
+
+  const fbAppId = Constants.expoConfig?.extra?.facebookAppId as string;
+
+  const [request, response, promptAsync] = useAuthRequest({
+    clientId: fbAppId,
+  });
+
+  useEffect(() => {
+    if (response?.type === "success") {
+      const { access_token } = response.params;
+      signInWithFacebook(access_token);
+    }
+  }, [response]);
+
+  const signInWithFacebook = async (token: string) => {
+    try {
+      const credential = FacebookAuthProvider.credential(token);
+      const userCredential = await signInWithCredential(auth, credential);
+      const additionalUserInfo = getAdditionalUserInfo(userCredential);
+
+      console.log("✅ Firebase'e başarıyla giriş yapıldı!");
+      navigation.navigate("TabBar");
+    } catch (error) {
+      console.error("Firebase'e Facebook ile giriş sırasında hata:", error);
+      Alert.alert(
+        "Giriş Başarısız",
+        "Facebook ile giriş yapılırken bir sorun oluştu."
+      );
+    }
+  };
+  // --- BİTTİ ---
+
+  if (!fbAppId) {
+    // app.json'da App ID yoksa hata göster
+    return (
+      <View>
+        <Text>Facebook App ID not configured!</Text>
+      </View>
+    );
+  }
+
   return (
     <ScrollView style={styles.container}>
       <Pressable onPress={() => navigation.navigate("Login")}>
@@ -40,14 +92,24 @@ const SignUpScreen: FC<Props> = () => {
         <View style={styles.orLine}>
           <View style={styles.line}></View>
           <Text style={{ fontSize: 15, marginTop: 20, marginHorizontal: 10 }}>
-            Or sign in with
+            Or sign up with
           </Text>
           <View style={styles.line}></View>
         </View>
-        <Pressable style={[styles.button, { backgroundColor: "#3963C7" }]}>
+
+        {/* GÜNCELLENDİ: Facebook butonuna onPress ve disabled propları eklendi */}
+        <Pressable
+          disabled={!request}
+          onPress={() => promptAsync()}
+          style={({ pressed }) => [
+            styles.button,
+            { backgroundColor: "#3963C7" },
+            pressed && styles.buttonPressed, // Basılma efekti için
+          ]}>
           <AntDesign name="facebook-square" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Facebook</Text>
         </Pressable>
+
         <Pressable style={[styles.button, { backgroundColor: "#D1422B" }]}>
           <AntDesign name="google" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Google</Text>
@@ -118,6 +180,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 50,
     justifyContent: "center",
+  },
+  buttonPressed: {
+    opacity: 0.8,
   },
   buttonText: { color: "white", fontWeight: "600" },
   bottomLine: {

@@ -12,7 +12,7 @@ import { Formik } from "formik";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Button from "./Button";
 import { ICreateUser, ISignUpForm } from "./types";
-import { auth } from "../../fireBaseConfig";
+import { auth } from "../../firebaseConfig";
 import * as Yup from "yup";
 
 const signUpSchema = Yup.object().shape({
