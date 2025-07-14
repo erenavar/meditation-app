@@ -7,21 +7,19 @@ import {
   Text,
   View,
 } from "react-native";
-import React, { useEffect } from "react"; // YENİ EKLENDİ: useEffect
+import React, { useEffect } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import SignUpForm from "../../components/SignUpForm";
 import { RootStackParamList } from "../../navigation/types";
 import { StackNavigationProp } from "@react-navigation/stack";
-
-// --- YENİ EKLENEN IMPORT'LAR ---
 import { useAuthRequest } from "expo-auth-session/providers/facebook";
 import {
   FacebookAuthProvider,
   getAdditionalUserInfo,
   signInWithCredential,
 } from "firebase/auth";
-import { auth } from "../../../firebaseConfig"; // db'yi de import ettiğinizi varsayıyorum
+import { auth, db } from "../../../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import Constants from "expo-constants";
 
@@ -30,12 +28,11 @@ const { width, height } = Dimensions.get("window");
 const SignUpScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-  // --- YENİ EKLENEN FACEBOOK GİRİŞ MANTIĞI ---
-
   const fbAppId = Constants.expoConfig?.extra?.facebookAppId as string;
 
   const [request, response, promptAsync] = useAuthRequest({
-    clientId: fbAppId,
+    iosClientId: fbAppId,
+    androidClientId: fbAppId,
   });
 
   useEffect(() => {
@@ -51,6 +48,17 @@ const SignUpScreen = () => {
       const userCredential = await signInWithCredential(auth, credential);
       const additionalUserInfo = getAdditionalUserInfo(userCredential);
 
+      if (additionalUserInfo?.isNewUser) {
+        console.log("Yeni kullanıcı, Firestore profili oluşturuluyor...");
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+          fullName: userCredential.user.displayName,
+          email: userCredential.user.email,
+          profileImgUrl: userCredential.user.photoURL,
+          authProvider: "facebook",
+          creationDate: new Date(),
+        });
+      }
+
       console.log("✅ Firebase'e başarıyla giriş yapıldı!");
       navigation.navigate("TabBar");
     } catch (error) {
@@ -61,10 +69,8 @@ const SignUpScreen = () => {
       );
     }
   };
-  // --- BİTTİ ---
 
   if (!fbAppId) {
-    // app.json'da App ID yoksa hata göster
     return (
       <View>
         <Text>Facebook App ID not configured!</Text>
@@ -96,8 +102,6 @@ const SignUpScreen = () => {
           </Text>
           <View style={styles.line}></View>
         </View>
-
-        {/* GÜNCELLENDİ: Facebook butonuna onPress ve disabled propları eklendi */}
         <Pressable
           disabled={!request}
           onPress={() => promptAsync()}
