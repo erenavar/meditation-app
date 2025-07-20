@@ -22,18 +22,27 @@ import {
 import { auth, db } from "../../../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import Constants from "expo-constants";
+import { makeRedirectUri } from "expo-auth-session";
 
 const { width, height } = Dimensions.get("window");
 
 const SignUpScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-
   const fbAppId = Constants.expoConfig?.extra?.facebookAppId as string;
 
-  const [request, response, promptAsync] = useAuthRequest({
-    iosClientId: fbAppId,
-    androidClientId: fbAppId,
-  });
+  // Proxy modunda oluşturulan redirect URI’yi log’luyoruz
+  const redirectUriTest = makeRedirectUri({ useProxy: true });
+  console.log("🔍 Test: makeRedirectUri with proxy =", redirectUriTest);
+
+  const [request, response, promptAsync] = useAuthRequest(
+    {
+      clientId: fbAppId,
+    },
+    {
+      useProxy: true,
+      projectNameForProxy: "@erenavar/meditation-app",
+    }
+  );
 
   useEffect(() => {
     if (response?.type === "success") {
@@ -104,16 +113,15 @@ const SignUpScreen = () => {
         </View>
         <Pressable
           disabled={!request}
-          onPress={() => promptAsync()}
+          onPress={() => promptAsync({ useProxy: true })}
           style={({ pressed }) => [
             styles.button,
             { backgroundColor: "#3963C7" },
-            pressed && styles.buttonPressed, // Basılma efekti için
+            pressed && styles.buttonPressed,
           ]}>
           <AntDesign name="facebook-square" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Facebook</Text>
         </Pressable>
-
         <Pressable style={[styles.button, { backgroundColor: "#D1422B" }]}>
           <AntDesign name="google" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Google</Text>
