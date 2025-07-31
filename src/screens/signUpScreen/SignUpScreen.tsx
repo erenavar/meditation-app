@@ -30,7 +30,6 @@ const SignUpScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const fbAppId = Constants.expoConfig?.extra?.facebookAppId as string;
 
-  // Proxy modunda oluşturulan redirect URI’yi log’luyoruz
   const redirectUriTest = makeRedirectUri({ useProxy: true });
   console.log("🔍 Test: makeRedirectUri with proxy =", redirectUriTest);
 

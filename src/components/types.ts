@@ -14,6 +14,7 @@ export interface ISignup {
 }
 
 export interface ICreateUser {
+  fullName: string;
   email: string;
   password: string;
   confirmPassword: string;
