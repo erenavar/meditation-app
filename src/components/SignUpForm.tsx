@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Alert,
   Platform,
   StyleSheet,
@@ -50,8 +51,6 @@ const SignUpForm: React.FC = () => {
           values.email,
           values.password
         );
-
-        // Create user profile in Firestore
         try {
           await setDoc(doc(db, "users", userCredential.user.uid), {
             fullName: values.fullName,
@@ -60,13 +59,12 @@ const SignUpForm: React.FC = () => {
             creationDate: new Date().toISOString(),
             uid: userCredential.user.uid,
           });
+          <ActivityIndicator size="large" color="#00ff00" />;
+          navigation.navigate("TabBar");
           console.log("✅ User profile created in Firestore");
         } catch (firestoreError) {
           console.error("⚠️ Firestore error:", firestoreError);
-          // Continue even if Firestore fails
         }
-
-        navigation.navigate("TabBar");
       } catch (error: unknown) {
         if (error instanceof Error && "code" in error) {
           const firebaseError = error as { code: string; message: string };
