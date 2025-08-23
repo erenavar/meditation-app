@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Platform,
 } from "react-native";
 import React, { useEffect } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -14,26 +15,30 @@ import SignUpForm from "../../components/SignUpForm";
 import { RootStackParamList } from "../../navigation/types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useAuthRequest } from "expo-auth-session/providers/facebook";
+import * as Google from "expo-auth-session/providers/google";
+import * as WebBrowser from "expo-web-browser";
 import {
   FacebookAuthProvider,
+  GoogleAuthProvider,
   getAdditionalUserInfo,
   signInWithCredential,
 } from "firebase/auth";
-import { auth, db } from "../../../firebaseConfig";
+import { auth, db, GOOGLE_CLIENT_IDS } from "../../../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import Constants from "expo-constants";
 import { makeRedirectUri } from "expo-auth-session";
 
 const { width, height } = Dimensions.get("window");
 
+// This is needed for Google Sign-In to work properly
+WebBrowser.maybeCompleteAuthSession();
+
 const SignUpScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const fbAppId = Constants.expoConfig?.extra?.facebookAppId as string;
 
-  const redirectUriTest = makeRedirectUri({ useProxy: true });
-  console.log("🔍 Test: makeRedirectUri with proxy =", redirectUriTest);
-
-  const [request, response, promptAsync] = useAuthRequest(
+  // Facebook Auth (existing code)
+  const [fbRequest, fbResponse, fbPromptAsync] = useAuthRequest(
     {
       clientId: fbAppId,
     },
@@ -43,12 +48,29 @@ const SignUpScreen = () => {
     }
   );
 
+  // Google Auth
+  const [googleRequest, googleResponse, googlePromptAsync] =
+    Google.useIdTokenAuthRequest({
+      clientId: GOOGLE_CLIENT_IDS.webClientId,
+      iosClientId: GOOGLE_CLIENT_IDS.iosClientId,
+      androidClientId: GOOGLE_CLIENT_IDS.androidClientId,
+    });
+
+  // Handle Facebook response (existing code)
   useEffect(() => {
-    if (response?.type === "success") {
-      const { access_token } = response.params;
+    if (fbResponse?.type === "success") {
+      const { access_token } = fbResponse.params;
       signInWithFacebook(access_token);
     }
-  }, [response]);
+  }, [fbResponse]);
+
+  // Handle Google response
+  useEffect(() => {
+    if (googleResponse?.type === "success") {
+      const { id_token } = googleResponse.params;
+      signInWithGoogle(id_token);
+    }
+  }, [googleResponse]);
 
   const signInWithFacebook = async (token: string) => {
     try {
@@ -63,7 +85,8 @@ const SignUpScreen = () => {
           email: userCredential.user.email,
           profileImgUrl: userCredential.user.photoURL,
           authProvider: "facebook",
-          creationDate: new Date(),
+          creationDate: new Date().toISOString(),
+          uid: userCredential.user.uid,
         });
       }
 
@@ -74,6 +97,37 @@ const SignUpScreen = () => {
       Alert.alert(
         "Giriş Başarısız",
         "Facebook ile giriş yapılırken bir sorun oluştu."
+      );
+    }
+  };
+
+  const signInWithGoogle = async (idToken: string) => {
+    try {
+      const credential = GoogleAuthProvider.credential(idToken);
+      const userCredential = await signInWithCredential(auth, credential);
+      const additionalUserInfo = getAdditionalUserInfo(userCredential);
+
+      if (additionalUserInfo?.isNewUser) {
+        console.log(
+          "Yeni Google kullanıcısı, Firestore profili oluşturuluyor..."
+        );
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+          fullName: userCredential.user.displayName,
+          email: userCredential.user.email,
+          profileImgUrl: userCredential.user.photoURL,
+          authProvider: "google",
+          creationDate: new Date().toISOString(),
+          uid: userCredential.user.uid,
+        });
+      }
+
+      console.log("✅ Google ile Firebase'e başarıyla giriş yapıldı!");
+      navigation.navigate("TabBar");
+    } catch (error: any) {
+      console.error("Firebase'e Google ile giriş sırasında hata:", error);
+      Alert.alert(
+        "Giriş Başarısız",
+        `Google ile giriş yapılırken bir sorun oluştu: ${error.message}`
       );
     }
   };
@@ -110,9 +164,11 @@ const SignUpScreen = () => {
           </Text>
           <View style={styles.line}></View>
         </View>
+
+        {/* Facebook Button */}
         <Pressable
-          disabled={!request}
-          onPress={() => promptAsync({ useProxy: true })}
+          disabled={!fbRequest}
+          onPress={() => fbPromptAsync({ useProxy: true })}
           style={({ pressed }) => [
             styles.button,
             { backgroundColor: "#3963C7" },
@@ -121,7 +177,16 @@ const SignUpScreen = () => {
           <AntDesign name="facebook-square" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Facebook</Text>
         </Pressable>
-        <Pressable style={[styles.button, { backgroundColor: "#D1422B" }]}>
+
+        {/* Google Button */}
+        <Pressable
+          disabled={!googleRequest}
+          onPress={() => googlePromptAsync()}
+          style={({ pressed }) => [
+            styles.button,
+            { backgroundColor: "#D1422B" },
+            pressed && styles.buttonPressed,
+          ]}>
           <AntDesign name="google" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Google</Text>
         </Pressable>
