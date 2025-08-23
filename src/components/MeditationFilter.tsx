@@ -17,7 +17,7 @@ const MeditationFilter: React.FC<MeditationFilterProps> = ({
   activeColor = "#73c3dd", // Using your meditation tab color
 }) => {
   const [activeTab, setActiveTab] = useState("ALL");
-  const tabs = ["ALL", "SLEEP", "ANXIETY", "STRESS", "FOCUS"];
+  const tabs = ["SLEEP", "ANXIETY", "STRESS", "FOCUS"];
 
   const handleTabPress = (tab: string) => {
     setActiveTab(tab);
