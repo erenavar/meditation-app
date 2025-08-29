@@ -40,29 +40,16 @@ const LoginScreen = () => {
   const fbAppId = Constants.expoConfig?.extra?.facebookAppId as string;
 
   // Google Auth - Using the exact Web Client ID
-  // Google Auth - Force using the proxy for Web client
   const [googleRequest, googleResponse, googlePromptAsync] =
-    Google.useIdTokenAuthRequest(
-      {
-        clientId:
-          "237439978029-ea7nsfr4rr68tu3442892amgdshvp113.apps.googleusercontent.com",
-      },
-      {
-        useProxy: true,
-        projectNameForProxy: "@erenavar/meditation-app",
-      }
-    );
+    Google.useIdTokenAuthRequest({
+      clientId:
+        "237439978029-ea7nsfr4rr68tu3442892amgdshvp113.apps.googleusercontent.com",
+    });
 
   // Facebook Auth
-  const [fbRequest, fbResponse, fbPromptAsync] = useAuthRequest(
-    {
-      clientId: fbAppId,
-    },
-    {
-      useProxy: true,
-      projectNameForProxy: "@erenavar/meditation-app",
-    }
-  );
+  const [fbRequest, fbResponse, fbPromptAsync] = useAuthRequest({
+    clientId: fbAppId,
+  });
 
   // Handle Google response
   useEffect(() => {
@@ -244,7 +231,7 @@ const LoginScreen = () => {
             {/* Facebook Sign In Button */}
             <Pressable
               disabled={!fbRequest}
-              onPress={() => fbPromptAsync({ useProxy: true })}
+              onPress={() => fbPromptAsync()}
               style={({ pressed }) => [
                 styles.socialButton,
                 { backgroundColor: "#3963C7" },
