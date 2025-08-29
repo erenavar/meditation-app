@@ -18,6 +18,7 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
 
+// Your Google OAuth Client IDs
 export const GOOGLE_CLIENT_IDS = {
   webClientId:
     "237439978029-ea7nsfr4rr68tu3442892amgdshvp113.apps.googleusercontent.com",

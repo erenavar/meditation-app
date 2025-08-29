@@ -25,19 +25,15 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "extra": {
       "facebookAppId": "1055056960053591",
       "eas": {
         "projectId": "6cff1d74-5384-424b-b2b0-2a07efdf3770"
       }
     },
-    "plugins": [
-      "expo-web-browser"
-    ],
-    "scheme": "meditationapp",
+    "plugins": ["expo-web-browser"],
+    "scheme": "com.erenavar.meditationapp",
     "facebookScheme": "fb1055056960053591",
     "facebookAppId": "1055056960053591",
     "facebookDisplayName": "Meditation App",

@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Platform,
 } from "react-native";
 import React, { useEffect } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -23,7 +22,7 @@ import {
   getAdditionalUserInfo,
   signInWithCredential,
 } from "firebase/auth";
-import { auth, db, GOOGLE_CLIENT_IDS } from "../../../firebaseConfig";
+import { auth, db } from "../../../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import Constants from "expo-constants";
 import { makeRedirectUri } from "expo-auth-session";
@@ -37,7 +36,7 @@ const SignUpScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const fbAppId = Constants.expoConfig?.extra?.facebookAppId as string;
 
-  // Facebook Auth (existing code)
+  // Facebook Auth
   const [fbRequest, fbResponse, fbPromptAsync] = useAuthRequest(
     {
       clientId: fbAppId,
@@ -48,15 +47,21 @@ const SignUpScreen = () => {
     }
   );
 
-  // Google Auth
+  // Google Auth - Using the exact Web Client ID
+  // Google Auth - Force using the proxy for Web client
   const [googleRequest, googleResponse, googlePromptAsync] =
-    Google.useIdTokenAuthRequest({
-      clientId: GOOGLE_CLIENT_IDS.webClientId,
-      iosClientId: GOOGLE_CLIENT_IDS.iosClientId,
-      androidClientId: GOOGLE_CLIENT_IDS.androidClientId,
-    });
+    Google.useIdTokenAuthRequest(
+      {
+        clientId:
+          "237439978029-ea7nsfr4rr68tu3442892amgdshvp113.apps.googleusercontent.com",
+      },
+      {
+        useProxy: true,
+        projectNameForProxy: "@erenavar/meditation-app",
+      }
+    );
 
-  // Handle Facebook response (existing code)
+  // Handle Facebook response
   useEffect(() => {
     if (fbResponse?.type === "success") {
       const { access_token } = fbResponse.params;
@@ -79,9 +84,11 @@ const SignUpScreen = () => {
       const additionalUserInfo = getAdditionalUserInfo(userCredential);
 
       if (additionalUserInfo?.isNewUser) {
-        console.log("Yeni kullanıcı, Firestore profili oluşturuluyor...");
+        console.log(
+          "Yeni Facebook kullanıcısı, Firestore profili oluşturuluyor..."
+        );
         await setDoc(doc(db, "users", userCredential.user.uid), {
-          fullName: userCredential.user.displayName,
+          fullName: userCredential.user.displayName || "Facebook User",
           email: userCredential.user.email,
           profileImgUrl: userCredential.user.photoURL,
           authProvider: "facebook",
@@ -90,7 +97,8 @@ const SignUpScreen = () => {
         });
       }
 
-      console.log("✅ Firebase'e başarıyla giriş yapıldı!");
+      console.log("✅ Facebook ile Firebase'e başarıyla giriş yapıldı!");
+      Alert.alert("Başarılı", "Facebook ile giriş yapıldı!");
       navigation.navigate("TabBar");
     } catch (error) {
       console.error("Firebase'e Facebook ile giriş sırasında hata:", error);
@@ -103,6 +111,7 @@ const SignUpScreen = () => {
 
   const signInWithGoogle = async (idToken: string) => {
     try {
+      console.log("🔐 Google Sign-In başlatılıyor...");
       const credential = GoogleAuthProvider.credential(idToken);
       const userCredential = await signInWithCredential(auth, credential);
       const additionalUserInfo = getAdditionalUserInfo(userCredential);
@@ -112,7 +121,7 @@ const SignUpScreen = () => {
           "Yeni Google kullanıcısı, Firestore profili oluşturuluyor..."
         );
         await setDoc(doc(db, "users", userCredential.user.uid), {
-          fullName: userCredential.user.displayName,
+          fullName: userCredential.user.displayName || "Google User",
           email: userCredential.user.email,
           profileImgUrl: userCredential.user.photoURL,
           authProvider: "google",
@@ -122,6 +131,7 @@ const SignUpScreen = () => {
       }
 
       console.log("✅ Google ile Firebase'e başarıyla giriş yapıldı!");
+      Alert.alert("Başarılı", "Google ile giriş yapıldı!");
       navigation.navigate("TabBar");
     } catch (error: any) {
       console.error("Firebase'e Google ile giriş sırasında hata:", error);
@@ -134,7 +144,7 @@ const SignUpScreen = () => {
 
   if (!fbAppId) {
     return (
-      <View>
+      <View style={styles.errorContainer}>
         <Text>Facebook App ID not configured!</Text>
       </View>
     );
@@ -173,6 +183,7 @@ const SignUpScreen = () => {
             styles.button,
             { backgroundColor: "#3963C7" },
             pressed && styles.buttonPressed,
+            !fbRequest && styles.buttonDisabled,
           ]}>
           <AntDesign name="facebook-square" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Facebook</Text>
@@ -181,11 +192,15 @@ const SignUpScreen = () => {
         {/* Google Button */}
         <Pressable
           disabled={!googleRequest}
-          onPress={() => googlePromptAsync()}
+          onPress={() => {
+            console.log("Google Sign-Up button pressed");
+            googlePromptAsync();
+          }}
           style={({ pressed }) => [
             styles.button,
             { backgroundColor: "#D1422B" },
             pressed && styles.buttonPressed,
+            !googleRequest && styles.buttonDisabled,
           ]}>
           <AntDesign name="google" size={20} color="white" />
           <Text style={styles.buttonText}>Sign up with Google</Text>
@@ -214,6 +229,11 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: width * 0.04,
     marginTop: width * 0.04,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   arrow: {
     marginTop: height * 0.04,
@@ -260,10 +280,17 @@ const styles = StyleSheet.create({
   buttonPressed: {
     opacity: 0.8,
   },
-  buttonText: { color: "white", fontWeight: "600" },
+  buttonDisabled: {
+    opacity: 0.5,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "600",
+  },
   bottomLine: {
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 40,
+    marginBottom: 40,
   },
 });
