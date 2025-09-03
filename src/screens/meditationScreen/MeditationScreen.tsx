@@ -1,37 +1,65 @@
-import { Text, ScrollView, StyleSheet, SafeAreaView } from "react-native";
-import React, { useState } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  SafeAreaView,
+  ActivityIndicator,
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import MeditationFilter from "../../components/MeditationFilter";
 import MeditationCard from "../../components/MeditationCard";
+import { getMeditations, Meditation } from "../../services/meditationService";
 
 const MeditationScreen = () => {
-  const [selectedCategory, setSelectedCategory] = useState("SLEEP");
+  const [selectedCategory, setSelectedCategory] = useState("ALL");
+  const [meditations, setMeditations] = useState<Meditation[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const meditations = {
-    SLEEP: [1, 2],
-    ANXIETY: [1, 2, 3],
-    STRESS: [1],
-    FOCUS: [1, 2, 3, 4],
-  };
+  useEffect(() => {
+    loadMeditations(selectedCategory);
+  }, [selectedCategory]);
 
-  const getMeditations = () => {
-    return meditations[selectedCategory as keyof typeof meditations] || [];
+  const loadMeditations = async (category: string) => {
+    setLoading(true);
+    const data = await getMeditations(category);
+    setMeditations(data);
+    setLoading(false);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <MeditationFilter onTabChange={setSelectedCategory} />
+
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <Text style={styles.categoryTitle}>
-          {selectedCategory === "SLEEP" ? "SLEEP" : selectedCategory}
+          {selectedCategory === "ALL" ? "All Meditations" : selectedCategory}
         </Text>
 
-        <Text style={styles.resultCount}>
-          {getMeditations().length} meditation
-          {getMeditations().length !== 1 ? "s" : ""} found
-        </Text>
-        {getMeditations().map((_, index) => (
-          <MeditationCard key={`${selectedCategory}-${index}`} />
-        ))}
+        {loading ? (
+          <ActivityIndicator
+            size="large"
+            color="#73c3dd"
+            style={styles.loader}
+          />
+        ) : (
+          <>
+            <Text style={styles.resultCount}>
+              {meditations.length} meditation
+              {meditations.length !== 1 ? "s" : ""} found
+            </Text>
+
+            {meditations.map((meditation) => (
+              <MeditationCard
+                key={meditation.id}
+                title={meditation.title}
+                duration={meditation.duration}
+                imageUrl={meditation.imageUrl}
+                category={meditation.category}
+              />
+            ))}
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -59,5 +87,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#76908E",
     marginBottom: 20,
+  },
+  loader: {
+    marginTop: 50,
   },
 });

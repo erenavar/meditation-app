@@ -1,8 +1,9 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import WhiteText from "./WhiteText";
+import { MeditationCardProps } from "./types";
 
-const MeditationCard = () => {
+const MeditationCard: FC<MeditationCardProps> = () => {
   return (
     <View style={styles.container}>
       <ImageBackground

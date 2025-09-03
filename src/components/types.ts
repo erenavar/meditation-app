@@ -20,6 +20,13 @@ export interface ICreateUser {
   confirmPassword: string;
 }
 
+export interface MeditationCardProps {
+  title: string;
+  duration: number;
+  imageUrl?: string;
+  category: string;
+}
+
 export interface ISignUpForm {
   fullName: string;
   email: string;

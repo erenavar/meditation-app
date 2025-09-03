@@ -14,11 +14,6 @@ function MainNavigation() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="TabBar"
           component={TabBarNavigation}
           options={{ headerShown: false }}
@@ -26,6 +21,11 @@ function MainNavigation() {
         <Stack.Screen
           name="Intro"
           component={IntroScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
